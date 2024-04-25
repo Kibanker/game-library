@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +14,8 @@ public class Bibliotheque {
 		JFrame f = new JFrame();
 		
 		try {
-		    UIManager.setLookAndFeel( new FlatDarkLaf() );
+			UIManager.put("Menu.background", new Color(173, 216, 230)); // Définir la couleur de fond du menu
+            UIManager.put("MenuItem.background", new Color(173, 216, 230)); // Définir la couleur de fond des éléments de menu
 		} catch( Exception ex ) {
 		    System.err.println( "Failed to initialize LaF" );
 		}
@@ -28,31 +31,38 @@ public class Bibliotheque {
 //		final JLabel label = new JLabel(imgScaled);
 //		
 //		f.add(label);
+
+		Color lightBlue = new Color(180, 220, 250);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(lightBlue);
 	    f.setJMenuBar(menuBar);
 
-	    JMenu menu = new JMenu("Acceuil");
+	    JMenu menu = new JMenu("Accueuil");
 	    JMenu menu2= new JMenu("Catégorie");
 	    menuBar.add(menu);
 	    menuBar.add(menu2);
 	    
-	    JMenu smenu1 = new JMenu("Action");
-	    JMenu smenu2 = new JMenu("Aventure");
-	    JMenu smenu3 = new JMenu("Course");
-	    JMenu smenu4 = new JMenu("Reflexion");
-	    JMenu smenu5 = new JMenu("Simulation");
-	    JMenu smenu6 = new JMenu("Strategie");
-	    JMenu smenu7 = new JMenu("Sport");
-	    
-	    menu2.add(smenu1);
-	    menu2.add(smenu2);
-	    menu2.add(smenu3);
-	    menu2.add(smenu4);
-	    menu2.add(smenu5);
-	    menu2.add(smenu6);
-	    menu2.add(smenu7);
-	    
+	    menu.setBackground(new Color(173, 216, 230)); // Bleu clair
+        menu2.setBackground(new Color(173, 216, 230)); // Bleu clair
+
+        // Ajouter les sous-menus
+        JMenu[] subMenus = {
+            new JMenu("Action"),
+            new JMenu("Aventure"),
+            new JMenu("Course"),
+            new JMenu("Réflexion"),
+            new JMenu("Simulation"),
+            new JMenu("Stratégie"),
+            new JMenu("Sport")
+        };
+        for (JMenu subMenu : subMenus) {
+            menu2.add(subMenu);
+            // Définir la couleur de fond pour les sous-menus
+            subMenu.setBackground(new Color(173, 216, 230)); // Bleu clair
+        }
+
+
 		ArrayList<Jeu> biblio = new ArrayList<Jeu>();
 		
 		
