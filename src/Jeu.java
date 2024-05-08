@@ -23,8 +23,8 @@ public class Jeu { // Modèle
 	
 	public Jeu(String resume, String nom, String cat, String date, String entreprise, double noteG, double noteC, String img, String media, String son, String nominations) {
 		this.resume = resume;
-		this.nom = resume;
-		this.categorie = resume;
+		this.nom = nom;
+		this.categorie = cat;
 		this.dateDeSortie = date;
 		this.entreprise = entreprise;
 		this.noteGen = noteG;
