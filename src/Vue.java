@@ -28,7 +28,12 @@ public class Vue extends JFrame {
             infoArea.append("Date de sortie: " + jeu.dateDeSortie + "\n");
             infoArea.append("Entreprise: " + jeu.entreprise + "\n");
             infoArea.append("Note générale: " + jeu.noteGen + "\n");
-            infoArea.append("Note créateur: " + jeu.noteCrea + "\n");
+            
+            if (jeu.noteCrea == -1.0) {
+            	infoArea.append("Note créateur: N/A \n");
+			} else {
+	            infoArea.append("Note créateur: " + jeu.noteCrea + "\n");
+			}
             
             if (!jeu.mediaAssocie.equals("null")) {
                 infoArea.append("Media associé: " + jeu.mediaAssocie + "\n");
