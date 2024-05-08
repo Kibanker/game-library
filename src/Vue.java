@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class Vue extends JFrame {
 
@@ -8,62 +9,39 @@ public class Vue extends JFrame {
         super("Bibliothèque de jeux vidéo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
         
         initMenuBar();
 
-        JPanel contentPane = new JPanel(new GridLayout(0, 1));
+        int numColumns = 4;
+        int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
+
+        JPanel contentPane = new JPanel(new GridLayout(numRows, numColumns, 20, 15)); // Espacement de 10 pixels entre les jeux
+        contentPane.setBackground(Color.BLACK); // Définir le fond noir pour le contenu
 
         for (Jeu jeu : biblio) {
             JPanel panel = new JPanel(new BorderLayout());
-
+            panel.setBorder(createGameBorder(jeu.nom)); // Créer une bordure personnalisée pour chaque jeu avec le nom à l'intérieur
+            panel.setBackground(Color.BLACK); // Définir le fond noir pour chaque jeu
+            
             // Image du jeu
             JLabel imageLabel = new JLabel(jeu.image);
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Ajouter des marges à l'image
+            imageLabel.setBackground(Color.BLACK); // Définir le fond noir pour l'image
+            imageLabel.setOpaque(true);
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             panel.add(imageLabel, BorderLayout.CENTER);
 
-            // Informations sur le jeu
-            JTextArea infoArea = new JTextArea();
-            infoArea.append("Nom: " + jeu.nom + "\n");
-            infoArea.append("Description: " + jeu.resume + "\n");
-            infoArea.append("Catégorie: " + jeu.categorie + "\n");
-            infoArea.append("Date de sortie: " + jeu.dateDeSortie + "\n");
-            infoArea.append("Entreprise: " + jeu.entreprise + "\n");
-            infoArea.append("Note générale: " + jeu.noteGen + "\n");
-            
-            if (jeu.noteCrea == -1.0) {
-            	infoArea.append("Note créateur: N/A \n");
-			} else {
-	            infoArea.append("Note créateur: " + jeu.noteCrea + "\n");
-			}
-            
-            if (!jeu.mediaAssocie.equals("null")) {
-                infoArea.append("Media associé: " + jeu.mediaAssocie + "\n");
-            } else {
-            	infoArea.append("Media associé: N/A \n");
-            }
-            if (!jeu.son.equals("null")) {
-                infoArea.append("Son: " + jeu.son + "\n");
-            } else {
-            	infoArea.append("Son associé: N/A \n");
-            }
-            if (!jeu.nominations.equals("null")) {
-                infoArea.append("Nominations: " + jeu.nominations + "\n");
-            } else {
-            	infoArea.append("Nominations: N/A \n");
-			}
-            
-            infoArea.setEditable(false);
-            
-            // Ajout de la zone de texte à un JScrollPane
-            JScrollPane scrollPane = new JScrollPane(infoArea);
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-            panel.add(scrollPane, BorderLayout.SOUTH);
             contentPane.add(panel);
         }
 
         // Ajout du JPanel à un JScrollPane pour permettre le défilement
         JScrollPane mainScrollPane = new JScrollPane(contentPane);
+        mainScrollPane.setBorder(BorderFactory.createEmptyBorder());
         mainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        mainScrollPane.setOpaque(false);
+        mainScrollPane.getViewport().setOpaque(false);
         add(mainScrollPane, BorderLayout.CENTER);
 
         pack();
@@ -93,5 +71,14 @@ public class Vue extends JFrame {
             // Définir la couleur de fond pour les sous-menus
             subMenu.setBackground(new Color(173, 216, 230)); // Bleu clair
         }
+    }
+    
+    private Border createGameBorder(String name) {
+        Border lineBorder = BorderFactory.createLineBorder(Color.GRAY); // Bordure simple
+        Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5); // Marges
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(lineBorder, name); // Bordure avec le nom du jeu à l'intérieur
+        titledBorder.setTitleColor(Color.WHITE); // Définir la couleur du titre en blanc
+        Border compoundBorder = BorderFactory.createCompoundBorder(titledBorder, emptyBorder); // Bordure composée de la bordure avec le nom et des marges
+        return BorderFactory.createCompoundBorder(new DropShadowBorder(), compoundBorder); // Ajout d'une ombre derrière la bordure composée
     }
 }
