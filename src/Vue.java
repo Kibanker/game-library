@@ -6,7 +6,7 @@ import javax.swing.border.*;
 public class Vue extends JFrame {
 
     public Vue(ArrayList<Jeu> biblio) {
-        super("Bibliothèque de jeux vidéo");
+        super("Virtual Arcade");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
@@ -18,6 +18,7 @@ public class Vue extends JFrame {
 
         JPanel contentPane = new JPanel(new GridLayout(numRows, numColumns, 20, 15)); // Espacement de 10 pixels entre les jeux
         contentPane.setBackground(Color.BLACK); // Définir le fond noir pour le contenu
+        
 
         for (Jeu jeu : biblio) {
             JPanel panel = new JPanel(new BorderLayout());
@@ -43,6 +44,13 @@ public class Vue extends JFrame {
         mainScrollPane.setOpaque(false);
         mainScrollPane.getViewport().setOpaque(false);
         add(mainScrollPane, BorderLayout.CENTER);
+        
+        // Ajout du titre "Virtual Arcade" centré au-dessus du JScrollPane
+        JLabel titleLabel = new JLabel("Virtual Arcade", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0)); // Espacement par rapport aux jeux
+        add(titleLabel, BorderLayout.NORTH);
 
         pack();
         setLocationRelativeTo(null);
