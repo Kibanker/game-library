@@ -113,7 +113,7 @@ public class Vue extends JFrame {
             
             // Image du jeu
             JLabel imageLabel = new JLabel(jeu.image);
-//            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Ajouter des marges à l'image
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Ajouter des marges à l'image
             imageLabel.setBackground(Color.BLACK); // Définir le fond noir pour l'image
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,13 +124,12 @@ public class Vue extends JFrame {
         }
 
         // Ajout du JPanel à un JScrollPane pour permettre le défilement
-        JScrollPane mainScrollPane = new JScrollPane(cataloguePanel);
-        mainScrollPane.setBorder(BorderFactory.createEmptyBorder());
-        mainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        mainScrollPane.setOpaque(false);
-        mainScrollPane.getViewport().setOpaque(false);
-        add(mainScrollPane, BorderLayout.CENTER);
-        
+        JScrollPane catalogueScrollPane = new JScrollPane(cataloguePanel);
+        catalogueScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        catalogueScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        catalogueScrollPane.setOpaque(true); // Définir à true pour peindre le contenu
+        catalogueScrollPane.getViewport().setOpaque(true); // Définir à true pour peindre le contenu
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -139,24 +138,34 @@ public class Vue extends JFrame {
         
     }
     
+    
     private void afficherPageAccueil() {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
         add(accueilPanel, BorderLayout.CENTER); // Ajouter le panneau de l'accueil
         revalidate(); // Rafraîchir l'affichage
+        setSize(800,600);
         repaint();
     }
     
     private void afficherPageCatalogue() {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
         add(cataloguePanel, BorderLayout.CENTER); // Ajouter le panneau du catalogue
+        JScrollPane catalogueScrollPane = new JScrollPane(cataloguePanel);
+        catalogueScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        catalogueScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        catalogueScrollPane.setOpaque(true); // Définir à true pour peindre le contenu
+        catalogueScrollPane.getViewport().setOpaque(true); // Définir à true pour peindre le contenu
+        add(catalogueScrollPane,BorderLayout.CENTER);
         revalidate(); // Rafraîchir l'affichage
         repaint();
+        setSize(1300,1200);
     }
     
     private void afficherPageCategorie() {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
         add(categoriePanel, BorderLayout.CENTER); // Ajouter le panneau des catégories
         revalidate(); // Rafraîchir l'affichage
+        setSize(1200,600);
         repaint();
     }
     
