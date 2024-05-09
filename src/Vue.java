@@ -18,6 +18,9 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
         
+        ImageIcon icon = new ImageIcon("files/appIcon.jpg"); // icon de l'app
+        setIconImage(icon.getImage());
+        
         
         JLabel titleLabel = new JLabel("Virtual Arcade");
         titleLabel.setForeground(lightBlue);
@@ -123,13 +126,6 @@ public class Vue extends JFrame {
 
             cataloguePanel.add(panel);
         }
-
-        // Ajout du JPanel à un JScrollPane pour permettre le défilement
-        JScrollPane catalogueScrollPane = new JScrollPane(cataloguePanel);
-        catalogueScrollPane.setBorder(BorderFactory.createEmptyBorder());
-        catalogueScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        catalogueScrollPane.setOpaque(true); // Définir à true pour peindre le contenu
-        catalogueScrollPane.getViewport().setOpaque(true); // Définir à true pour peindre le contenu
 
         pack();
         setLocationRelativeTo(null);
