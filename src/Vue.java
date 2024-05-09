@@ -167,6 +167,14 @@ public class Vue extends JFrame {
 
         JMenu menu = new JMenu("Accueil");
         JMenu menu2 = new JMenu("Catégories");
+        
+        menu.addMouseListener( new MouseAdapter() {
+        	@Override
+            public void mouseClicked(MouseEvent e) {
+                afficherPageAccueil();
+            }
+        });
+        
         menuBar.add(menu);
         menuBar.add(menu2);
 
@@ -179,6 +187,7 @@ public class Vue extends JFrame {
             menu2.add(subMenu);
             subMenu.setBackground(new Color(173, 216, 230)); 
         }
+        
     }
 
     private Border createGameBorder(String name) {
