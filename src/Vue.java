@@ -18,6 +18,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
         
+        
         JLabel titleLabel = new JLabel("Virtual Arcade");
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); // Définir la police et la taille du texte
@@ -133,6 +134,7 @@ public class Vue extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Ouvre l'application en plein écran
         
         afficherPageAccueil();
         
@@ -143,7 +145,6 @@ public class Vue extends JFrame {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
         add(accueilPanel, BorderLayout.CENTER); // Ajouter le panneau de l'accueil
         revalidate(); // Rafraîchir l'affichage
-        setSize(800,600);
         repaint();
     }
     
@@ -158,14 +159,12 @@ public class Vue extends JFrame {
         add(catalogueScrollPane,BorderLayout.CENTER);
         revalidate(); // Rafraîchir l'affichage
         repaint();
-        setSize(1300,1200);
     }
     
     private void afficherPageCategorie() {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
         add(categoriePanel, BorderLayout.CENTER); // Ajouter le panneau des catégories
         revalidate(); // Rafraîchir l'affichage
-        setSize(1200,600);
         repaint();
     }
     
