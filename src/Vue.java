@@ -139,6 +139,7 @@ public class Vue extends JFrame {
     
     private void afficherPageAccueil() {
         getContentPane().removeAll(); // Supprimer tout contenu précédent
+        
         add(accueilPanel, BorderLayout.CENTER); // Ajouter le panneau de l'accueil
         revalidate(); // Rafraîchir l'affichage
         repaint();
