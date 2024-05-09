@@ -19,7 +19,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); 
 
-        ImageIcon icon = new ImageIcon("files/appIcon.jpg");
+        ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
@@ -195,7 +195,19 @@ public class Vue extends JFrame {
         detailJeuPanel.removeAll(); 
 
         DescriptionJeuPanel descriptionPanel = new DescriptionJeuPanel(jeu);
-        detailJeuPanel.add(descriptionPanel, BorderLayout.NORTH);
+        
+        JButton retourButton = new JButton("← Retour au catalogue");
+        retourButton.setForeground(Color.WHITE);
+        retourButton.setBackground(Color.BLACK);
+        retourButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        retourButton.addActionListener(e -> afficherPageCatalogue());
+
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setBackground(Color.BLACK);
+        buttonPanel.add(retourButton, BorderLayout.WEST);
+
+        detailJeuPanel.add(buttonPanel, BorderLayout.NORTH);
+        detailJeuPanel.add(descriptionPanel, BorderLayout.CENTER);
 
         JScrollPane detailScrollPane = new JScrollPane(detailJeuPanel);
         detailScrollPane.setBorder(BorderFactory.createEmptyBorder());
