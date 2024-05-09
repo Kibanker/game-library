@@ -1,9 +1,16 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
 public class Vue extends JFrame {
+	
+    private JPanel accueilPanel;
+    private JPanel cataloguePanel;
+    private JPanel categoriePanel;
+    Color lightBlue = new Color(180, 220, 250);
 
     public Vue(ArrayList<Jeu> biblio) {
         super("Bibliothèque de jeux vidéo");
@@ -11,13 +18,93 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
         
+        JLabel titleLabel = new JLabel("Nom de l'application");
+        titleLabel.setForeground(lightBlue);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); // Définir la police et la taille du texte
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        
+        // Créer les labels et définition de leur taille
+        JLabel catalogueLabel = new JLabel("CATALOGUE");
+        JLabel categorieLabel = new JLabel("CATEGORIE");
+        
+        catalogueLabel.setForeground(Color.WHITE);
+        catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        catalogueLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        catalogueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        
+        categorieLabel.setForeground(Color.WHITE);
+        categorieLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        categorieLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        categorieLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+     // Ajout des écouteurs de souris pour gérer les clics sur les labels
+        catalogueLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                afficherPageCatalogue();
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                catalogueLabel.setForeground(lightBlue); // Changer la couleur lors du survol
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent e) {
+                catalogueLabel.setForeground(Color.WHITE); // Revenir à la couleur normale
+            }
+        });
+        
+        categorieLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                afficherPageCategorie();
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                categorieLabel.setForeground(lightBlue); // Changer la couleur lors du survol
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent e) {
+                categorieLabel.setForeground(Color.WHITE); // Revenir à la couleur normale
+            }
+        });
+        
+        // Création du panneau d'accueil avec les labels
+        accueilPanel = new JPanel(new GridLayout(3, 1)); // Utiliser un gestionnaire de mise en page en grille
+        accueilPanel.setBackground(Color.BLACK);
+        accueilPanel.add(titleLabel);
+        accueilPanel.add(catalogueLabel); // Ajouter le label Catalogue
+        accueilPanel.add(categorieLabel); // Ajouter le label Catégorie
+        
+        // Ajouter le panneau d'accueil à la fenêtre principale
+        add(accueilPanel, BorderLayout.CENTER);
+        
+        // Initialiser les panneaux pour le catalogue et les catégories (vide pour l'instant)
+        cataloguePanel = new JPanel();
+        cataloguePanel.setBackground(Color.BLACK);
+        
+        categoriePanel = new JPanel();
+        categoriePanel.setBackground(Color.BLACK);
+
+        
         initMenuBar();
+        
+        // Création des panneaux pour le catalogue et les catégories
+        
+        categoriePanel = new JPanel();
+        categoriePanel.setBackground(Color.BLACK);
+        // Code pour remplir le panneau des catégories...
 
         int numColumns = 4;
         int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
 
-        JPanel contentPane = new JPanel(new GridLayout(numRows, numColumns, 20, 15)); // Espacement de 10 pixels entre les jeux
-        contentPane.setBackground(Color.BLACK); // Définir le fond noir pour le contenu
+        cataloguePanel = new JPanel(new GridLayout(numRows, numColumns, 20, 15)); // Espacement de 10 pixels entre les jeux
+        cataloguePanel.setBackground(Color.BLACK); // Définir le fond noir pour le contenu
 
         for (Jeu jeu : biblio) {
             JPanel panel = new JPanel(new BorderLayout());
@@ -26,18 +113,18 @@ public class Vue extends JFrame {
             
             // Image du jeu
             JLabel imageLabel = new JLabel(jeu.image);
-            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Ajouter des marges à l'image
+//            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Ajouter des marges à l'image
             imageLabel.setBackground(Color.BLACK); // Définir le fond noir pour l'image
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             panel.add(imageLabel, BorderLayout.CENTER);
 
-            contentPane.add(panel);
+            cataloguePanel.add(panel);
         }
 
         // Ajout du JPanel à un JScrollPane pour permettre le défilement
-        JScrollPane mainScrollPane = new JScrollPane(contentPane);
+        JScrollPane mainScrollPane = new JScrollPane(cataloguePanel);
         mainScrollPane.setBorder(BorderFactory.createEmptyBorder());
         mainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         mainScrollPane.setOpaque(false);
@@ -47,11 +134,35 @@ public class Vue extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        
+        afficherPageAccueil();
+        
     }
+    
+    private void afficherPageAccueil() {
+        getContentPane().removeAll(); // Supprimer tout contenu précédent
+        add(accueilPanel, BorderLayout.CENTER); // Ajouter le panneau de l'accueil
+        revalidate(); // Rafraîchir l'affichage
+        repaint();
+    }
+    
+    private void afficherPageCatalogue() {
+        getContentPane().removeAll(); // Supprimer tout contenu précédent
+        add(cataloguePanel, BorderLayout.CENTER); // Ajouter le panneau du catalogue
+        revalidate(); // Rafraîchir l'affichage
+        repaint();
+    }
+    
+    private void afficherPageCategorie() {
+        getContentPane().removeAll(); // Supprimer tout contenu précédent
+        add(categoriePanel, BorderLayout.CENTER); // Ajouter le panneau des catégories
+        revalidate(); // Rafraîchir l'affichage
+        repaint();
+    }
+    
     
     private void initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        Color lightBlue = new Color(180, 220, 250);
         menuBar.setBackground(lightBlue);
         setJMenuBar(menuBar);
 
