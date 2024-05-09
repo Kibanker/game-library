@@ -13,12 +13,12 @@ public class Vue extends JFrame {
     Color lightBlue = new Color(180, 220, 250);
 
     public Vue(ArrayList<Jeu> biblio) {
-        super("Bibliothèque de jeux vidéo");
+        super("Virtual Arcade");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); // Définir le fond noir pour la fenêtre
         
-        JLabel titleLabel = new JLabel("Nom de l'application");
+        JLabel titleLabel = new JLabel("Virtual Arcade");
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); // Définir la police et la taille du texte
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -30,13 +30,13 @@ public class Vue extends JFrame {
         
         catalogueLabel.setForeground(Color.WHITE);
         catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        catalogueLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        catalogueLabel.setFont(new Font("Arial", Font.BOLD, 35));
         catalogueLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
         
         categorieLabel.setForeground(Color.WHITE);
         categorieLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        categorieLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        categorieLabel.setFont(new Font("Arial", Font.BOLD, 35));
         categorieLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
      // Ajout des écouteurs de souris pour gérer les clics sur les labels
@@ -130,7 +130,7 @@ public class Vue extends JFrame {
         mainScrollPane.setOpaque(false);
         mainScrollPane.getViewport().setOpaque(false);
         add(mainScrollPane, BorderLayout.CENTER);
-
+        
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
