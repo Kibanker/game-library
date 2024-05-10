@@ -260,7 +260,7 @@ public class Vue extends JFrame {
             
         }
         
-        // Bar de rechercher
+        // Barre de recherche
     	
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBackground(Color.LIGHT_GRAY);
