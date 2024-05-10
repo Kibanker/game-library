@@ -240,7 +240,7 @@ public class Vue extends JFrame {
         categoriesMenu.setBackground(new Color(173, 216, 230));
 
         // Liste des catégories disponibles
-        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport"};
+        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
 
         // Créer un bouton pour chaque catégorie
         for (String category : categories) {
