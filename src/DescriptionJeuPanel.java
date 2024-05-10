@@ -54,7 +54,7 @@ public class DescriptionJeuPanel extends JPanel {
                 "Entreprise: " + jeu.entreprise + "\n" +
                 "Note générale: " + jeu.noteGen + "\n" +
                 "Note de création: " + jeu.noteCrea + "\n" +
-                "Nominations: " + (jeu.nominations != null ? jeu.nominations : "N/A"));
+                "Nominations: " + (jeu.nominations == "null" ? jeu.nominations : "N/A"));
         descriptionArea.setForeground(Color.WHITE);
         descriptionArea.setBackground(Color.BLACK);
         descriptionArea.setFont(new Font("Arial", Font.PLAIN, 18));
