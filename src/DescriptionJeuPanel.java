@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class DescriptionJeuPanel extends JPanel {
     private Jeu jeu;
+    String noteCreaNA;
 
     public DescriptionJeuPanel(Jeu jeu) {
         this.jeu = jeu;
@@ -62,11 +63,14 @@ public class DescriptionJeuPanel extends JPanel {
         descriptionPanel.setBackground(Color.BLACK);
 
         JTextArea descriptionArea = new JTextArea();
+        if(jeu.noteCrea == -1.0) {
+        	noteCreaNA = "N/A";
+        }
         descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
                 "Date de sortie: " + jeu.dateDeSortie + "\n" +
                 "Entreprise: " + jeu.entreprise + "\n" +
                 "Note générale: " + jeu.noteGen + "\n" +
-                "Note de création: " + jeu.noteCrea + "\n" +
+                "Note de création: " + (jeu.noteCrea == -1.0 ? noteCreaNA : "N/A") + "\n" +
                 "Nominations: " + (jeu.nominations == "null" ? jeu.nominations : "N/A"));
         descriptionArea.setForeground(Color.WHITE);
         descriptionArea.setBackground(Color.BLACK);
