@@ -219,7 +219,7 @@ public class Vue extends JFrame {
 
     private void initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(lightBlue);
+        menuBar.setBackground(Color.BLACK);
         setJMenuBar(menuBar);
 
         JMenu menu = new JMenu("Accueil");
@@ -257,7 +257,21 @@ public class Vue extends JFrame {
             });
 
             categoriesMenu.add(categoryButton);
+            
         }
+        
+        // Bar de rechercher
+    	
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBackground(Color.LIGHT_GRAY);
+
+        JTextField searchField = new JTextField(20);
+        JButton searchButton = new JButton("Rechercher");
+
+        panel.add(searchField);
+        panel.add(searchButton);
+        menuBar.add(panel, BorderLayout.PAGE_END);
+        
     }
 
     private Border createGameBorder(String name) {
@@ -376,9 +390,4 @@ public class Vue extends JFrame {
         revalidate();  // Mettre à jour l'interface utilisateur
         repaint();
     }
-
-
-    
-
-
 }
