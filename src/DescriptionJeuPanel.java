@@ -15,6 +15,29 @@ public class DescriptionJeuPanel extends JPanel {
         imageLabel.setBackground(Color.BLACK);
         imageLabel.setOpaque(true);
         add(imageLabel, BorderLayout.WEST);
+        
+        JPanel resumePanel = new JPanel(new BorderLayout());
+        resumePanel.setOpaque(false); // Permet au fond d'écran de s'afficher
+        add(resumePanel, BorderLayout.CENTER);
+
+        // Résumé du jeu dans un JScrollPane
+        JTextArea summaryArea = new JTextArea(jeu.resume);
+        summaryArea.setForeground(Color.WHITE);
+        summaryArea.setBackground(Color.BLACK);
+        summaryArea.setFont(new Font("Arial", Font.PLAIN, 18));
+        summaryArea.setEditable(false);
+        summaryArea.setLineWrap(true); // Saut de ligne automatique
+        summaryArea.setWrapStyleWord(true); // Saut de ligne après le mot entier
+
+        JScrollPane summaryScrollPane = new JScrollPane(summaryArea);
+        summaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Défilement vertical
+        summaryScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Pas de défilement horizontal
+        summaryScrollPane.setPreferredSize(new Dimension(350, 50)); // Définir la taille préférée du JScrollPane
+
+        // Ajouter le résumé dans un panneau défilable
+        JPanel summaryPanel = new JPanel(new BorderLayout());
+        summaryPanel.add(summaryScrollPane, BorderLayout.CENTER);
+        resumePanel.add(summaryPanel, BorderLayout.CENTER);
 
         // Description du jeu à droite de l'image
         JPanel descriptionPanel = new JPanel(new BorderLayout());
@@ -39,6 +62,6 @@ public class DescriptionJeuPanel extends JPanel {
         descriptionArea.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20)); // Ajouter des marges à la zone de texte
         descriptionPanel.add(descriptionArea, BorderLayout.CENTER);
 
-        add(descriptionPanel, BorderLayout.CENTER);
+        add(descriptionPanel, BorderLayout.EAST);
     }
 }
