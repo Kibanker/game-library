@@ -65,7 +65,7 @@ public class Vue extends JFrame {
         categorieLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                afficherPageCategorie();
+                afficherPageAccueilCategorie();
             }
 
             @Override
@@ -161,9 +161,57 @@ public class Vue extends JFrame {
         repaint();
     }
 
-    private void afficherPageCategorie() {
+    private void afficherPageAccueilCategorie() {
         getContentPane().removeAll(); 
-        add(categoriePanel, BorderLayout.CENTER); 
+
+        JPanel categoryPanel = new JPanel();
+        categoryPanel.setLayout(new GridLayout(0, 1)); // Utiliser une disposition en colonnes pour afficher les catégories
+        categoryPanel.setBackground(Color.BLACK); 
+        JLabel titleLabel = new JLabel("CATEGORIES");
+        titleLabel.setForeground(lightBlue);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); 
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        categoryPanel.add(titleLabel);
+
+        // Liste des catégories disponibles
+        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport"};
+
+        for (String category : categories) {
+            JLabel categoryLabel = new JLabel(category);
+            categoryLabel.setForeground(Color.WHITE);
+            categoryLabel.setFont(new Font("Arial", Font.BOLD, 30)); 
+            categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            categoryLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            // Ajouter un écouteur d'événements pour rediriger vers la page de la catégorie correspondante
+            categoryLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    afficherPageCategorie(category);
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    categoryLabel.setForeground(lightBlue);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    categoryLabel.setForeground(Color.WHITE);
+                }
+            });
+
+            categoryPanel.add(categoryLabel);
+        }
+
+        JScrollPane categoryScrollPane = new JScrollPane(categoryPanel);
+        categoryScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        categoryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        categoryScrollPane.setOpaque(true); 
+        categoryScrollPane.getViewport().setOpaque(true); 
+
+        add(categoryScrollPane, BorderLayout.CENTER); 
+
         revalidate(); 
         repaint();
     }
