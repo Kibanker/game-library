@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ public class Vue extends JFrame {
     private JPanel categoriePanel;
     private JPanel detailJeuPanel;
     Color lightBlue = new Color(180, 220, 250);
+    
+    private ArrayList<Jeu> biblio;
+
 
     public Vue(ArrayList<Jeu> biblio) {
         super("Virtual Arcade");
@@ -80,6 +85,8 @@ public class Vue extends JFrame {
         accueilPanel.add(titleLabel);
         accueilPanel.add(catalogueLabel);
         accueilPanel.add(categorieLabel);
+        
+        this.biblio = biblio;
         
 
         add(accueilPanel, BorderLayout.CENTER);
@@ -168,28 +175,41 @@ public class Vue extends JFrame {
         setJMenuBar(menuBar);
 
         JMenu menu = new JMenu("Accueil");
-        JMenu menu2 = new JMenu("Catégories");
-        
-        menu.addMouseListener( new MouseAdapter() {
-        	@Override
+        JMenu categoriesMenu = new JMenu("Catégories");
+
+        // Ajouter un écouteur d'événements pour le menu "Accueil"
+        menu.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 afficherPageAccueil();
             }
         });
-        
+
         menuBar.add(menu);
-        menuBar.add(menu2);
+        menuBar.add(categoriesMenu);
 
-        menu.setBackground(new Color(173, 216, 230)); 
-        menu2.setBackground(new Color(173, 216, 230)); 
+        menu.setBackground(new Color(173, 216, 230));
+        categoriesMenu.setBackground(new Color(173, 216, 230));
 
+        // Liste des catégories disponibles
         String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport"};
+
+        // Créer un bouton pour chaque catégorie
         for (String category : categories) {
-            JMenuItem subMenu = new JMenuItem(category);
-            menu2.add(subMenu);
-            subMenu.setBackground(new Color(173, 216, 230)); 
+            JMenuItem categoryButton = new JMenuItem(category);
+            categoryButton.setBackground(new Color(173, 216, 230));
+
+            // Ajouter un écouteur d'événements pour chaque bouton de catégorie
+            categoryButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Afficher la page correspondante à la catégorie sélectionnée
+                    afficherPageCategorie(category);
+                }
+            });
+
+            categoriesMenu.add(categoryButton);
         }
-        
     }
 
     private Border createGameBorder(String name) {
@@ -241,5 +261,76 @@ public class Vue extends JFrame {
         revalidate();
         repaint();
     }
+    
+    private void afficherPageCategorie(String category) {
+        getContentPane().removeAll();  // Nettoyer le contenu actuel
+
+        // Créer un nouveau panneau pour afficher les jeux de la catégorie sélectionnée
+        JPanel categoryPanel = new JPanel(new BorderLayout()); // Utiliser BorderLayout
+        categoryPanel.setBackground(Color.BLACK);
+
+        // Ajouter un titre pour indiquer la catégorie sélectionnée
+        JLabel categoryTitle = new JLabel(category);
+        categoryTitle.setForeground(Color.WHITE);
+        categoryTitle.setFont(new Font("Arial", Font.BOLD, 35));
+        categoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        categoryPanel.add(categoryTitle, BorderLayout.NORTH); // Ajouter le titre en haut
+
+        // Filtrer les jeux de la catégorie sélectionnée
+        ArrayList<Jeu> jeuxDeCategorie = new ArrayList<>();
+        for (Jeu jeu : biblio) {
+            if (jeu.categorie.equals(category)) {
+                jeuxDeCategorie.add(jeu);
+            }
+        }
+        
+        System.out.println("Nombre de jeux dans la catégorie " + category + ": " + jeuxDeCategorie.size());
+
+
+        // Créer un panneau pour les jeux avec une grille pour les organiser
+        JPanel jeuxPanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
+        jeuxPanel.setBackground(Color.BLACK);
+
+        for (Jeu jeu : jeuxDeCategorie) {
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.setBorder(createGameBorder(jeu.nom));
+            panel.setBackground(Color.BLACK);
+
+            JLabel imageLabel = new JLabel(jeu.image);
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setBackground(Color.BLACK);
+            imageLabel.setOpaque(true);
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
+            panel.add(imageLabel, BorderLayout.CENTER);
+
+            imageLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    afficherFenetreDetailJeu(jeu);
+                }
+            });
+
+            jeuxPanel.add(panel);
+        }
+
+        // Ajouter le panneau des jeux à un JScrollPane pour permettre le défilement
+        JScrollPane jeuxScrollPane = new JScrollPane(jeuxPanel);
+        jeuxScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        jeuxScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jeuxScrollPane.setOpaque(true);
+        jeuxScrollPane.getViewport().setOpaque(true);
+        categoryPanel.add(jeuxScrollPane, BorderLayout.CENTER); // Ajouter le JScrollPane au centre
+
+        // Ajouter le panneau de la catégorie à la vue
+        add(categoryPanel, BorderLayout.CENTER);
+
+        revalidate();  // Mettre à jour l'interface utilisateur
+        repaint();
+    }
+
+
+    
+
 
 }
