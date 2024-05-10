@@ -33,7 +33,7 @@ public class Vue extends JFrame {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JLabel catalogueLabel = new JLabel("CATALOGUE");
-        JLabel categorieLabel = new JLabel("CATEGORIE");
+        JLabel categorieLabel = new JLabel("CATEGORIES");
 
         catalogueLabel.setForeground(Color.WHITE);
         catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
