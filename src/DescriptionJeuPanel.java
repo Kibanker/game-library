@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 
 public class DescriptionJeuPanel extends JPanel {
@@ -8,12 +11,27 @@ public class DescriptionJeuPanel extends JPanel {
         this.jeu = jeu;
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
+		/*
+		 * setBorder(createGameBorder(jeu.nom)); setBackground(Color.BLACK);
+		 */
+        
+        JPanel nomPanel = new JPanel(new BorderLayout());
+        nomPanel.setBackground(Color.BLACK);
+        JLabel nameLabel = new JLabel(jeu.nom);
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        nameLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20)); // Ajouter des marges au label du nom
+        nomPanel.add(nameLabel);
+        add(nomPanel, BorderLayout.NORTH);
+        
+        
 
         // Image du jeu en haut à gauche
         JLabel imageLabel = new JLabel(jeu.image);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Ajouter des marges à l'image
         imageLabel.setBackground(Color.BLACK);
         imageLabel.setOpaque(true);
+        imageLabel.setBorder(createGameBorder(jeu.nom));
         add(imageLabel, BorderLayout.WEST);
         
         JPanel resumePanel = new JPanel(new BorderLayout());
@@ -42,11 +60,6 @@ public class DescriptionJeuPanel extends JPanel {
         // Description du jeu à droite de l'image
         JPanel descriptionPanel = new JPanel(new BorderLayout());
         descriptionPanel.setBackground(Color.BLACK);
-        JLabel nameLabel = new JLabel(jeu.nom);
-        nameLabel.setForeground(Color.WHITE);
-        nameLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        nameLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20)); // Ajouter des marges au label du nom
-        descriptionPanel.add(nameLabel, BorderLayout.NORTH);
 
         JTextArea descriptionArea = new JTextArea();
         descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
@@ -63,5 +76,10 @@ public class DescriptionJeuPanel extends JPanel {
         descriptionPanel.add(descriptionArea, BorderLayout.CENTER);
 
         add(descriptionPanel, BorderLayout.EAST);
+    }
+    
+    private Border createGameBorder(String name) {
+        Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+        return BorderFactory.createCompoundBorder(new DropShadowBorder(), emptyBorder);
     }
 }
