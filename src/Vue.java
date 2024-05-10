@@ -73,12 +73,14 @@ public class Vue extends JFrame {
                 categorieLabel.setForeground(Color.WHITE); 
             }
         });
+        
 
         accueilPanel = new JPanel(new GridLayout(3, 1)); 
         accueilPanel.setBackground(Color.BLACK);
         accueilPanel.add(titleLabel);
         accueilPanel.add(catalogueLabel);
         accueilPanel.add(categorieLabel);
+        
 
         add(accueilPanel, BorderLayout.CENTER);
 
@@ -205,7 +207,7 @@ public class Vue extends JFrame {
 
         DescriptionJeuPanel descriptionPanel = new DescriptionJeuPanel(jeu);
         
-        JButton retourButton = new JButton("← Retour au catalogue");
+        JButton retourButton = new JButton("◄ Retour au catalogue");
         retourButton.setForeground(Color.WHITE);
         retourButton.setBackground(Color.BLACK);
         retourButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -214,9 +216,20 @@ public class Vue extends JFrame {
         JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.add(retourButton, BorderLayout.WEST);
-
-        detailJeuPanel.add(buttonPanel, BorderLayout.NORTH);
-        detailJeuPanel.add(descriptionPanel, BorderLayout.CENTER);
+        
+        // Utilisation d'un GridBagLayout pour disposer les composants
+        detailJeuPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        // Ajout des détails à gauche de la description
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        detailJeuPanel.add(buttonPanel, gbc); // Ajout du bouton de retour en haut à gauche
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        detailJeuPanel.add(descriptionPanel, gbc); // Ajout de la description au centre
 
         JScrollPane detailScrollPane = new JScrollPane(detailJeuPanel);
         detailScrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -228,4 +241,5 @@ public class Vue extends JFrame {
         revalidate();
         repaint();
     }
+
 }
