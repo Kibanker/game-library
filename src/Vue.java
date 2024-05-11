@@ -174,7 +174,7 @@ public class Vue extends JFrame {
         categoryPanel.add(titleLabel);
 
         // Liste des catégories disponibles
-        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport"};
+        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
 
         for (String category : categories) {
             JLabel categoryLabel = new JLabel(category);
@@ -297,13 +297,18 @@ public class Vue extends JFrame {
     private void afficherRecherche(String search) {
     	getContentPane().removeAll();
     	
-    	
     	ArrayList<Jeu> rechercheJeux = new ArrayList<>();
         for (Jeu jeu : biblio) {
             if (jeu.nom.toLowerCase().contains(search.toLowerCase())) {
             	rechercheJeux.add(jeu);
             }
         }
+        
+        System.out.println("Jeux dans la recherche " + search);
+        for (int i = 0; i < rechercheJeux.size(); i++) {
+			System.out.println(rechercheJeux.get(i).nom);
+		}
+        
         
         JPanel recherchePanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
         recherchePanel.setBackground(Color.BLACK);
