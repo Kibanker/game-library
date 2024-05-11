@@ -272,6 +272,17 @@ public class Vue extends JFrame {
         panel.add(searchButton);
         menuBar.add(panel, BorderLayout.PAGE_END);
         
+        // Ajouter un ActionListener pour le bouton de recherche
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtenir le texte de recherche saisi par l'utilisateur
+                String searchTerm = searchField.getText();
+                // Appeler la méthode de recherche avec le terme de recherche
+                afficherRecherche(searchTerm);
+            }
+        });
+        
     }
 
     private Border createGameBorder(String name) {
@@ -281,6 +292,10 @@ public class Vue extends JFrame {
         titledBorder.setTitleColor(Color.WHITE); 
         Border compoundBorder = BorderFactory.createCompoundBorder(titledBorder, emptyBorder); 
         return BorderFactory.createCompoundBorder(new DropShadowBorder(), compoundBorder); 
+    }
+    
+    private void afficherRecherche(String search) {
+    	getContentPane().removeAll();
     }
 
     private void afficherFenetreDetailJeu(Jeu jeu) {
