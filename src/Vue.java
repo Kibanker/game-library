@@ -296,6 +296,44 @@ public class Vue extends JFrame {
     
     private void afficherRecherche(String search) {
     	getContentPane().removeAll();
+    	
+    	
+    	ArrayList<Jeu> rechercheJeux = new ArrayList<>();
+        for (Jeu jeu : biblio) {
+            if (jeu.nom.toLowerCase().contains(search.toLowerCase())) {
+            	rechercheJeux.add(jeu);
+            }
+        }
+        
+        JPanel recherchePanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
+        recherchePanel.setBackground(Color.BLACK);
+
+        for (Jeu jeu : rechercheJeux) {
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.setBorder(createGameBorder(jeu.nom));
+            panel.setBackground(Color.BLACK);
+
+            JLabel imageLabel = new JLabel(jeu.image);
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setBackground(Color.BLACK);
+            imageLabel.setOpaque(true);
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
+            panel.add(imageLabel, BorderLayout.CENTER);
+
+            imageLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    afficherFenetreDetailJeu(jeu);
+                }
+            });
+
+            recherchePanel.add(panel);
+        }
+
+        revalidate();  // Mettre à jour l'interface utilisateur
+        repaint();
+    	
     }
 
     private void afficherFenetreDetailJeu(Jeu jeu) {
