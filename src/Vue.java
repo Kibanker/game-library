@@ -297,6 +297,10 @@ public class Vue extends JFrame {
     private void afficherRecherche(String search) {
     	getContentPane().removeAll();
     	
+    	
+    	JPanel recherchePanel = new JPanel(new BorderLayout());
+    	recherchePanel.setBackground(Color.BLACK);
+    	
     	ArrayList<Jeu> rechercheJeux = new ArrayList<>();
         for (Jeu jeu : biblio) {
             if (jeu.nom.toLowerCase().contains(search.toLowerCase())) {
@@ -310,8 +314,8 @@ public class Vue extends JFrame {
 		}
         
         
-        JPanel recherchePanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
-        recherchePanel.setBackground(Color.BLACK);
+        JPanel jeuxRecherchePanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
+        jeuxRecherchePanel.setBackground(Color.BLACK);
 
         for (Jeu jeu : rechercheJeux) {
             JPanel panel = new JPanel(new BorderLayout());
@@ -333,8 +337,20 @@ public class Vue extends JFrame {
                 }
             });
 
-            recherchePanel.add(panel);
+            jeuxRecherchePanel.add(panel);
         }
+        
+        
+        // Ajouter le panneau des jeux à un JScrollPane pour permettre le défilement
+        JScrollPane jeuxScrollPane = new JScrollPane(jeuxRecherchePanel);
+        jeuxScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        jeuxScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jeuxScrollPane.setOpaque(true);
+        jeuxScrollPane.getViewport().setOpaque(true);
+        recherchePanel.add(jeuxScrollPane, BorderLayout.CENTER); // Ajouter le JScrollPane au centre
+
+        
+        add(recherchePanel, BorderLayout.CENTER);
 
         revalidate();  // Mettre à jour l'interface utilisateur
         repaint();
