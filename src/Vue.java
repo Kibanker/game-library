@@ -364,10 +364,22 @@ public class Vue extends JFrame {
         DescriptionJeuPanel descriptionPanel = new DescriptionJeuPanel(jeu);
         
         JButton retourButton = new JButton("◄ Retour au catalogue");
+        retourButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourButton.setForeground(Color.WHITE);
         retourButton.setBackground(Color.BLACK);
         retourButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         retourButton.addActionListener(e -> afficherPageCatalogue());
+        retourButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	retourButton.setForeground(lightBlue); 
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	retourButton.setForeground(Color.WHITE); 
+            }
+        });
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.setBackground(Color.BLACK);
