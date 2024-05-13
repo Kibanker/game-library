@@ -218,14 +218,17 @@ public class Vue extends JFrame {
 
 
     private void initMenuBar() {
+        // Création de la barre de menu
         JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(Color.BLACK);
+        menuBar.setBackground(Color.LIGHT_GRAY);
         setJMenuBar(menuBar);
 
+        // Création des menus "Accueil" et "Catégories"
         JMenu menu = new JMenu("Accueil");
         JMenu categoriesMenu = new JMenu("Catégories");
+        JMenu catalogueMenu = new JMenu("Catalogue"); // Nouveau menu pour le catalogue
 
-        // Ajouter un écouteur d'événements pour le menu "Accueil"
+        // Ajout d'un écouteur d'événements pour le menu "Accueil"
         menu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -233,35 +236,46 @@ public class Vue extends JFrame {
             }
         });
 
+        // Ajout d'un écouteur d'événements pour le menu "Catalogue"
+        catalogueMenu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                afficherPageCatalogue();
+            }
+        });
+
+        // Ajout des menus à la barre de menu
         menuBar.add(menu);
         menuBar.add(categoriesMenu);
+        menuBar.add(catalogueMenu); // Ajout du nouveau menu "Catalogue"
 
+        // Configuration des couleurs des menus
         menu.setBackground(new Color(173, 216, 230));
         categoriesMenu.setBackground(new Color(173, 216, 230));
+        catalogueMenu.setBackground(new Color(173, 216, 230));
 
         // Liste des catégories disponibles
         String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
 
-        // Créer un bouton pour chaque catégorie
+        // Création d'un bouton pour chaque catégorie
         for (String category : categories) {
             JMenuItem categoryButton = new JMenuItem(category);
             categoryButton.setBackground(new Color(173, 216, 230));
 
-            // Ajouter un écouteur d'événements pour chaque bouton de catégorie
+            // Ajout d'un écouteur d'événements pour chaque bouton de catégorie
             categoryButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Afficher la page correspondante à la catégorie sélectionnée
+                    // Affichage de la page correspondante à la catégorie sélectionnée
                     afficherPageCategorie(category);
                 }
             });
 
+            // Ajout des boutons de catégorie au menu "Catégories"
             categoriesMenu.add(categoryButton);
-            
         }
-        
+
         // Barre de recherche
-    	
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBackground(Color.LIGHT_GRAY);
 
@@ -271,19 +285,19 @@ public class Vue extends JFrame {
         panel.add(searchField);
         panel.add(searchButton);
         menuBar.add(panel, BorderLayout.PAGE_END);
-        
-        // Ajouter un ActionListener pour le bouton de recherche
+
+        // Ajout d'un ActionListener pour le bouton de recherche
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtenir le texte de recherche saisi par l'utilisateur
                 String searchTerm = searchField.getText();
-                // Appeler la méthode de recherche avec le terme de recherche
+                // Appel de la méthode de recherche avec le terme de recherche
                 afficherRecherche(searchTerm);
             }
         });
-        
     }
+
 
     private Border createGameBorder(String name) {
         Border lineBorder = BorderFactory.createLineBorder(Color.GRAY); 
