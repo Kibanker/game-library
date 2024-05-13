@@ -63,7 +63,7 @@ public class DescriptionJeuPanel extends JPanel {
             noteCreaNA = "N/A";
         }
         descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
-                "Date de sortie: " + jeu.dateDeSortie + "\n" +
+                "Date de sortie: " + jeu.dateDeSortie + "" +
                 "Entreprise: " + jeu.entreprise + "\n" +
                 "Note générale: " + jeu.noteGen + "\n" +
                 "Note de création: " + (jeu.noteCrea == -1.0 ? noteCreaNA : "N/A") + "\n" +

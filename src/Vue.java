@@ -115,7 +115,8 @@ public class Vue extends JFrame {
             panel.setBackground(Color.BLACK); 
 
             JLabel imageLabel = new JLabel(jeu.image);
-            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             imageLabel.setBackground(Color.BLACK); 
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -339,6 +340,7 @@ public class Vue extends JFrame {
 
             JLabel imageLabel = new JLabel(jeu.image);
             imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             imageLabel.setBackground(Color.BLACK);
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -415,14 +417,16 @@ public class Vue extends JFrame {
         detailJeuPanel.add(descriptionPanel, gbc); // Ajout de la description au centre
      
         
-//        gbc.gridx = 0;
-//        gbc.gridy = 2;
-//        gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
-//        JLabel rec = new JLabel("Dans la même catégorie: " + jeu.categorie);
-//        JPanel recoPanel = new JPanel(new BorderLayout());
-//        recoPanel.setBackground(Color.BLACK);
-//        recoPanel.add(rec, BorderLayout.NORTH);
-//        detailJeuPanel.add(recoPanel, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
+        JLabel rec = new JLabel("\n Dans la même catégorie: " + jeu.categorie);
+        rec.setForeground(Color.WHITE);
+        rec.setFont(new Font("Arial", Font.BOLD, 25));
+        JPanel recoPanel = new JPanel(new BorderLayout());
+        recoPanel.setBackground(Color.BLACK);
+        recoPanel.add(rec, BorderLayout.NORTH);
+        detailJeuPanel.add(recoPanel, gbc);
         
         
         JPanel recommendations = new JPanel(new GridLayout(0, 3, 20, 15));
@@ -449,6 +453,7 @@ public class Vue extends JFrame {
             JLabel imageLabel = new JLabel(j.image);
             imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             imageLabel.setBackground(Color.BLACK);
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -466,7 +471,7 @@ public class Vue extends JFrame {
 		}
         
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.BASELINE;
 
         detailJeuPanel.add(recommendations, gbc);
