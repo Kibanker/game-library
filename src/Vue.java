@@ -276,7 +276,7 @@ public class Vue extends JFrame {
         }
 
         // Barre de recherche
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panel.setBackground(Color.LIGHT_GRAY);
 
         JTextField searchField = new JTextField(20);
