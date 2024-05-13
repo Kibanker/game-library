@@ -524,6 +524,7 @@ public class Vue extends JFrame {
 
             JLabel imageLabel = new JLabel(jeu.image);
             imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             imageLabel.setBackground(Color.BLACK);
             imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);

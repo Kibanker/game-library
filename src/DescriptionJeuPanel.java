@@ -63,7 +63,7 @@ public class DescriptionJeuPanel extends JPanel {
             noteCreaNA = "N/A";
         }
         descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
-                "Date de sortie: " + jeu.dateDeSortie + "" +
+                "Date de sortie: " + jeu.dateDeSortie + "\n" +
                 "Entreprise: " + jeu.entreprise + "\n" +
                 "Note générale: " + jeu.noteGen + "\n" +
                 "Note de création: " + (jeu.noteCrea == -1.0 ? noteCreaNA : "N/A") + "\n" +
@@ -93,6 +93,7 @@ public class DescriptionJeuPanel extends JPanel {
             ImageIcon newStarIcon = new ImageIcon(newImage);
             JButton starButton = new JButton(newStarIcon);
             starButton.setBorderPainted(false); // Supprimer la bordure du bouton
+            starButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             starButton.setContentAreaFilled(false); // Supprimer le remplissage du bouton
             starButton.setFocusPainted(false); // Supprimer la mise au point du bouton
             starButton.setOpaque(false); // Rendre le bouton transparent
