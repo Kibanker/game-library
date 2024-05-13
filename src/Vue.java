@@ -246,8 +246,9 @@ public class Vue extends JFrame {
 
         // Ajout des menus à la barre de menu
         menuBar.add(menu);
-        menuBar.add(categoriesMenu);
         menuBar.add(catalogueMenu); // Ajout du nouveau menu "Catalogue"
+        menuBar.add(categoriesMenu);
+        
 
         // Configuration des couleurs des menus
         menu.setBackground(new Color(173, 216, 230));
@@ -412,7 +413,65 @@ public class Vue extends JFrame {
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         detailJeuPanel.add(descriptionPanel, gbc); // Ajout de la description au centre
+     
+        
+//        gbc.gridx = 0;
+//        gbc.gridy = 2;
+//        gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
+//        JLabel rec = new JLabel("Dans la même catégorie: " + jeu.categorie);
+//        JPanel recoPanel = new JPanel(new BorderLayout());
+//        recoPanel.setBackground(Color.BLACK);
+//        recoPanel.add(rec, BorderLayout.NORTH);
+//        detailJeuPanel.add(recoPanel, gbc);
+        
+        
+        JPanel recommendations = new JPanel(new GridLayout(0, 3, 20, 15));
+        recommendations.setBackground(Color.BLACK);
+        
+        ArrayList<Jeu> reco = new ArrayList<Jeu>();
+        
+        for (Jeu j : biblio) {
+        	if (j.categorie.equals(jeu.categorie) && !j.nom.equals(jeu.nom)) {
+				reco.add(j);
+			}
+        }
+        
+        while(reco.size() > 3) {
+        	reco.remove(reco.size()-1);
+        }
+        
+        for (Jeu j : reco) {
+			JPanel panel = new JPanel(new BorderLayout());
+			panel.setBorder(createGameBorder(j.nom));
+            panel.setBackground(Color.BLACK);
+            
 
+            JLabel imageLabel = new JLabel(j.image);
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setBackground(Color.BLACK);
+            imageLabel.setOpaque(true);
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
+            panel.add(imageLabel, BorderLayout.CENTER);
+            
+            imageLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    afficherFenetreDetailJeu(j);
+                }
+            });
+
+            recommendations.add(panel);
+			
+		}
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.BASELINE;
+
+        detailJeuPanel.add(recommendations, gbc);
+        
+        
         JScrollPane detailScrollPane = new JScrollPane(detailJeuPanel);
         detailScrollPane.setBorder(BorderFactory.createEmptyBorder());
         detailScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
