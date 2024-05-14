@@ -13,6 +13,7 @@ public class Vue extends JFrame {
     private JPanel cataloguePanel;
     private JPanel categoriePanel;
     private JPanel detailJeuPanel;
+    private JPanel contactPanel;
     Color lightBlue = new Color(180, 220, 250);
     
     private ArrayList<Jeu> biblio;
@@ -161,6 +162,111 @@ public class Vue extends JFrame {
         revalidate(); 
         repaint();
     }
+    
+    private void afficherPageContact() {
+        getContentPane().removeAll();
+
+        contactPanel = new JPanel();
+        contactPanel.setBackground(Color.BLACK);
+        contactPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+
+        JLabel titleLabel = new JLabel("Des questions? Des recommandations?");
+        titleLabel.setForeground(lightBlue);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 35));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        contactPanel.add(titleLabel, gbc);
+
+        JLabel subtitleLabel = new JLabel("Contactez-nous!");
+        subtitleLabel.setForeground(Color.WHITE);
+        subtitleLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        contactPanel.add(subtitleLabel, gbc);
+
+        JLabel nameLabel = new JLabel("Nom:");
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        contactPanel.add(nameLabel, gbc);
+
+        JTextField nameField = new JTextField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        contactPanel.add(nameField, gbc);
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailLabel.setForeground(Color.WHITE);
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        contactPanel.add(emailLabel, gbc);
+
+        JTextField emailField = new JTextField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        contactPanel.add(emailField, gbc);
+
+        JLabel messageLabel = new JLabel("Message:");
+        messageLabel.setForeground(Color.WHITE);
+        messageLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        contactPanel.add(messageLabel, gbc);
+
+        JTextArea messageArea = new JTextArea(5, 20);
+        messageArea.setLineWrap(true);
+        messageArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(messageArea);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        contactPanel.add(scrollPane, gbc);
+
+        JButton submitButton = new JButton("Envoyer");
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        contactPanel.add(submitButton, gbc);
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameField.getText();
+                String email = emailField.getText();
+                String message = messageArea.getText();
+
+                if (name.isEmpty() || email.isEmpty() || message.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Message envoyé avec succès", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                    // Logique pour traiter les données du formulaire ici
+                    nameField.setText("");
+                    emailField.setText("");
+                    messageArea.setText("");
+                }
+            }
+        });
+
+        add(contactPanel, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
 
     private void afficherPageAccueilCategorie() {
         getContentPane().removeAll(); 
@@ -226,8 +332,14 @@ public class Vue extends JFrame {
 
         // Création des menus "Accueil" et "Catégories"
         JMenu menu = new JMenu("Accueil");
+        menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         JMenu categoriesMenu = new JMenu("Catégories");
-        JMenu catalogueMenu = new JMenu("Catalogue"); // Nouveau menu pour le catalogue
+        categoriesMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        JMenu catalogueMenu = new JMenu("Catalogue");
+        catalogueMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));// Nouveau menu pour le catalogue
+        JMenu contactMenu = new JMenu("Contact");
+        contactMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
 
         // Ajout d'un écouteur d'événements pour le menu "Accueil"
         menu.addMouseListener(new MouseAdapter() {
@@ -244,6 +356,14 @@ public class Vue extends JFrame {
                 afficherPageCatalogue();
             }
         });
+        
+        contactMenu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                afficherPageContact();
+            }
+            
+        });
 
         // Ajout des menus à la barre de menu
         menuBar.add(menu);
@@ -253,6 +373,7 @@ public class Vue extends JFrame {
 
         // Configuration des couleurs des menus
         menu.setBackground(new Color(173, 216, 230));
+        contactMenu.setBackground(new Color(124, 154, 187));
         categoriesMenu.setBackground(new Color(173, 216, 230));
         catalogueMenu.setBackground(new Color(173, 216, 230));
 
@@ -283,7 +404,9 @@ public class Vue extends JFrame {
 
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Rechercher");
-
+        
+        
+        panel.add(contactMenu);
         panel.add(searchField);
         panel.add(searchButton);
         menuBar.add(panel, BorderLayout.PAGE_END);
