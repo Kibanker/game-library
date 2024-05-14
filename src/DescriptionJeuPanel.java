@@ -8,7 +8,7 @@ import javax.swing.border.Border;
 public class DescriptionJeuPanel extends JPanel {
     private Jeu jeu;
     private boolean voted; // Variable pour suivre si l'utilisateur a déjà voté pour ce jeu
-    String noteCreaNA;
+    String noteCreaNA = "N/A";
 
     public DescriptionJeuPanel(Jeu jeu) {
         this.jeu = jeu;
@@ -63,14 +63,23 @@ public class DescriptionJeuPanel extends JPanel {
 
         JTextArea descriptionArea = new JTextArea();
         if (jeu.noteCrea == -1.0) {
-            noteCreaNA = "N/A";
+            descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
+                    "Date de sortie: " + jeu.dateDeSortie + "\n" +
+                    "Entreprise: " + jeu.entreprise + "\n" +
+                    "Note générale: " + jeu.noteGen + "\n" +
+                    "Notre note: " + noteCreaNA + "\n" +
+                    "Média associé: "  + (jeu.mediaAssocie.equals("null") ? "N/A" : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
+        } else {
+            descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
+                    "Date de sortie: " + jeu.dateDeSortie + "\n" +
+                    "Entreprise: " + jeu.entreprise + "\n" +
+                    "Note générale: " + jeu.noteGen + "\n" +
+                    "Notre note: " + jeu.noteCrea + "\n" +
+                    "Média associé: "  + (jeu.mediaAssocie.equals("null") ? "N/A" : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         }
-        descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
-                "Date de sortie: " + jeu.dateDeSortie + "\n" +
-                "Entreprise: " + jeu.entreprise + "\n" +
-                "Note générale: " + jeu.noteGen + "\n" +
-                "Note de création: " + (jeu.noteCrea == -1.0 ? noteCreaNA : "N/A") + "\n" +
-                "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
+
         descriptionArea.setForeground(Color.WHITE);
         descriptionArea.setBackground(Color.BLACK);
         descriptionArea.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -157,4 +166,3 @@ public class DescriptionJeuPanel extends JPanel {
         return BorderFactory.createCompoundBorder(new DropShadowBorder(), emptyBorder);
     }
 }
-
