@@ -67,37 +67,47 @@ public class Vue extends JFrame {
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 160, 0));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 130, 0));
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(pixelFont); 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JLabel catalogueLabel = new JLabel("CATALOGUE");
         JLabel categorieLabel = new JLabel("CATEGORIES");
+        JLabel quitterLabel = new JLabel("Quitter");
+        
         
      // Create custom panels for labels
         RoundedPanel catalogueLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
         RoundedPanel categorieLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
+        RoundedPanel quitterLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
 
         // Set some padding around the labels
         catalogueLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         categorieLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        quitterLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         
         
         // Add labels to custom panels
         catalogueLabelPanel.add(catalogueLabel, BorderLayout.CENTER);
         categorieLabelPanel.add(categorieLabel, BorderLayout.CENTER);
+        quitterLabelPanel.add(quitterLabel, BorderLayout.CENTER);
 
         catalogueLabel.setForeground(Color.WHITE);
         catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        catalogueLabel.setFont(new Font("Arial", Font.BOLD, 35));
+        catalogueLabel.setFont(new Font("Arial", Font.BOLD, 45));
         catalogueLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         categorieLabel.setForeground(Color.WHITE);
         categorieLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        categorieLabel.setFont(new Font("Arial", Font.BOLD, 35));
+        categorieLabel.setFont(new Font("Arial", Font.BOLD, 45));
         categorieLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        quitterLabel.setForeground(new Color(170, 0, 0));
+        quitterLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        quitterLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        quitterLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         catalogueLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -133,6 +143,22 @@ public class Vue extends JFrame {
             }
         });
         
+        quitterLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                quitterLabel.setForeground(Color.red);
+            }
+            
+            public void mouseExited(MouseEvent e) {
+            	quitterLabel.setForeground(new Color(170, 0, 0)); 
+            }
+        });
+        
         accueilPanel = new BackgroundPanel("files/appIcon.jpg");
         accueilPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -146,6 +172,9 @@ public class Vue extends JFrame {
 
         gbc.gridy = 2;
         accueilPanel.add(categorieLabelPanel, gbc);
+        
+        gbc.gridy = 3;
+        accueilPanel.add(quitterLabelPanel, gbc);
         
         this.biblio = biblio;
         
