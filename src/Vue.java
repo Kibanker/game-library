@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -17,6 +19,39 @@ public class Vue extends JFrame {
     Color lightBlue = new Color(180, 220, 250);
     
     private ArrayList<Jeu> biblio;
+    
+
+    class RoundedPanel extends JPanel {
+        private Color backgroundColor;
+        private int cornerRadius = 15;
+
+        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+            super(layout);
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+            setOpaque(false);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
+            }
+            graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);
+            graphics.setColor(getForeground());
+            graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);
+        }
+    }
 
 
     public Vue(ArrayList<Jeu> biblio) {
@@ -24,17 +59,35 @@ public class Vue extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); 
+        
+        Font pixelFont = loadFont("files/Crang.ttf");
+        pixelFont = pixelFont.deriveFont(Font.BOLD, 65);
 
         ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 160, 0));
         titleLabel.setForeground(lightBlue);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); 
+        titleLabel.setFont(pixelFont); 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JLabel catalogueLabel = new JLabel("CATALOGUE");
         JLabel categorieLabel = new JLabel("CATEGORIES");
+        
+     // Create custom panels for labels
+        RoundedPanel catalogueLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
+        RoundedPanel categorieLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
+
+        // Set some padding around the labels
+        catalogueLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        categorieLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        
+        
+        // Add labels to custom panels
+        catalogueLabelPanel.add(catalogueLabel, BorderLayout.CENTER);
+        categorieLabelPanel.add(categorieLabel, BorderLayout.CENTER);
 
         catalogueLabel.setForeground(Color.WHITE);
         catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -81,11 +134,18 @@ public class Vue extends JFrame {
         });
         
         accueilPanel = new BackgroundPanel("files/appIcon.jpg");
-        accueilPanel.setLayout(new GridLayout(3, 1));
-        accueilPanel.setBackground(Color.BLACK);
-        accueilPanel.add(titleLabel);
-        accueilPanel.add(catalogueLabel);
-        accueilPanel.add(categorieLabel);
+        accueilPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(20, 0, 20, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        accueilPanel.add(titleLabel, gbc);
+
+        gbc.gridy = 1;
+        accueilPanel.add(catalogueLabelPanel, gbc);
+
+        gbc.gridy = 2;
+        accueilPanel.add(categorieLabelPanel, gbc);
         
         this.biblio = biblio;
         
@@ -140,6 +200,20 @@ public class Vue extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
 
         afficherPageAccueil();
+    }
+    
+    private Font loadFont(String path) {
+        try {
+            // Load the font file
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(path));
+            // Register the font
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            return font;
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
