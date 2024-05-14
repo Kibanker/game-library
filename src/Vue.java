@@ -9,7 +9,7 @@ import javax.swing.border.*;
 
 public class Vue extends JFrame {
 
-    private JPanel accueilPanel;
+	private BackgroundPanel accueilPanel;
     private JPanel cataloguePanel;
     private JPanel categoriePanel;
     private JPanel detailJeuPanel;
@@ -79,8 +79,8 @@ public class Vue extends JFrame {
             }
         });
         
-
-        accueilPanel = new JPanel(new GridLayout(3, 1)); 
+        accueilPanel = new BackgroundPanel("files/appBg.png");
+        accueilPanel.setLayout(new GridLayout(3, 1));
         accueilPanel.setBackground(Color.BLACK);
         accueilPanel.add(titleLabel);
         accueilPanel.add(catalogueLabel);
