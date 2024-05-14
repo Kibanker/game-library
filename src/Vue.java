@@ -328,6 +328,13 @@ public class Vue extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(Color.LIGHT_GRAY);
         setJMenuBar(menuBar);
+        
+     // Code ajouté pour le titre de l'application dans la barre de menu
+        JLabel titleLabel = new JLabel("Virtual Arcade");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 25)); // Utilisez une police similaire à Netflix
+        titleLabel.setForeground(lightBlue); // Couleur bleu clair
+        menuBar.add(Box.createHorizontalStrut(20)); // Ajoute un espace
+        menuBar.add(titleLabel);
 
         // Création des menus "Accueil" et "Catégories"
         JMenu menu = new JMenu("Accueil");

@@ -60,22 +60,23 @@ public class DescriptionJeuPanel extends JPanel {
 
         JTextArea descriptionArea = new JTextArea();
         if (jeu.noteCrea == -1.0) {
-        	descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
-                "Date de sortie: " + jeu.dateDeSortie + "\n" +
-                "Entreprise: " + jeu.entreprise + "\n" +
-                "Note générale: " + jeu.noteGen + "\n" +
-                "Notre note: " + noteCreaNA + "\n" +
-                "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
-        }
-        else {
-        	descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
+            descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
+                    "Date de sortie: " + jeu.dateDeSortie + "\n" +
+                    "Entreprise: " + jeu.entreprise + "\n" +
+                    "Note générale: " + jeu.noteGen + "\n" +
+                    "Notre note: " + noteCreaNA + "\n" +
+                    (jeu.mediaAssocie != null ? "Média associé: " + jeu.mediaAssocie + "\n" : "") + // Condition ajoutée pour le média associé
+                    "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
+        } else {
+            descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
                     "Date de sortie: " + jeu.dateDeSortie + "\n" +
                     "Entreprise: " + jeu.entreprise + "\n" +
                     "Note générale: " + jeu.noteGen + "\n" +
                     "Notre note: " + jeu.noteCrea + "\n" +
+                    (jeu.mediaAssocie != null ? "Média associé: " + jeu.mediaAssocie + "\n" : "") + // Condition ajoutée pour le média associé
                     "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         }
-        
+
         descriptionArea.setForeground(Color.WHITE);
         descriptionArea.setBackground(Color.BLACK);
         descriptionArea.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -134,4 +135,3 @@ public class DescriptionJeuPanel extends JPanel {
         return BorderFactory.createCompoundBorder(new DropShadowBorder(), emptyBorder);
     }
 }
-
