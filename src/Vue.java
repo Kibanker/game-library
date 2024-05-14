@@ -261,7 +261,22 @@ public class Vue extends JFrame {
         });
 
         add(contactPanel, BorderLayout.CENTER);
+        
+     // Créer un panneau pour le texte en bas
+        JPanel footerPanel = new JPanel();
+        footerPanel.setBackground(Color.BLACK);
+        footerPanel.setLayout(new BorderLayout());
 
+        JLabel footerLabel = new JLabel("<html><center>Cette application est développée par:<br>BOUTOU Frederic<br>DEMONT Julie<br>VINCENT Noa<br><br>VIRTUAL ARCADE ©</center></html>");
+        footerLabel.setForeground(Color.WHITE);
+        footerLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        footerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        footerPanel.add(footerLabel, BorderLayout.CENTER);
+
+        // Ajouter le panneau de pied de page en bas de la vue
+        add(footerPanel, BorderLayout.SOUTH);
+        
         revalidate();
         repaint();
     }
