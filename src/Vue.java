@@ -25,7 +25,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); 
 
-        ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
+        ImageIcon icon = new ImageIcon("files/appBg.png"); 
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
@@ -165,7 +165,7 @@ public class Vue extends JFrame {
     
     private void afficherPageContact() {
         getContentPane().removeAll();
-
+        
         contactPanel = new JPanel();
         contactPanel.setBackground(Color.BLACK);
         contactPanel.setLayout(new GridBagLayout());
@@ -253,7 +253,6 @@ public class Vue extends JFrame {
                     JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Message envoyé avec succès", "Succès", JOptionPane.INFORMATION_MESSAGE);
-                    // Logique pour traiter les données du formulaire ici
                     nameField.setText("");
                     emailField.setText("");
                     messageArea.setText("");
