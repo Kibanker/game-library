@@ -61,13 +61,13 @@ public class Vue extends JFrame {
         getContentPane().setBackground(Color.BLACK); 
         
         Font pixelFont = loadFont("files/Crang.ttf");
-        pixelFont = pixelFont.deriveFont(Font.BOLD, 65);
+        pixelFont = pixelFont.deriveFont(Font.BOLD, 80);
 
         ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 130, 0));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 110, 0));
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(pixelFont); 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,7 +92,7 @@ public class Vue extends JFrame {
         // Add labels to custom panels
         catalogueLabelPanel.add(catalogueLabel, BorderLayout.CENTER);
         categorieLabelPanel.add(categorieLabel, BorderLayout.CENTER);
-        quitterLabelPanel.add(quitterLabel, BorderLayout.CENTER);
+        quitterLabelPanel.add(quitterLabel, BorderLayout.SOUTH);
 
         catalogueLabel.setForeground(Color.WHITE);
         catalogueLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -174,6 +174,7 @@ public class Vue extends JFrame {
         accueilPanel.add(categorieLabelPanel, gbc);
         
         gbc.gridy = 3;
+        gbc.insets = new Insets(120, 0, 0, 0);
         accueilPanel.add(quitterLabelPanel, gbc);
         
         this.biblio = biblio;
