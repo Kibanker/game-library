@@ -69,7 +69,7 @@ public class DescriptionJeuPanel extends JPanel {
                     "Entreprise: " + jeu.entreprise + "\n" +
                     "Note générale: " + jeu.noteGen + "\n" +
                     "Notre note: " + noteCreaNA + "\n" +
-                    (jeu.mediaAssocie.equals("null")  ? "N/A"  : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    "Média associée: " + (jeu.mediaAssocie.equals("null")  ? "N/A"  : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
                     "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         } else {
             descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
@@ -77,7 +77,7 @@ public class DescriptionJeuPanel extends JPanel {
                     "Entreprise: " + jeu.entreprise + "\n" +
                     "Note générale: " + jeu.noteGen + "\n" +
                     "Notre note: " + jeu.noteCrea + "\n" +
-                    (jeu.mediaAssocie.equals("null")  ? "N/A"  : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    "Média associée: " + (jeu.mediaAssocie.equals("null")  ? "N/A"  : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
                     "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         }
 

@@ -72,24 +72,23 @@ public class Vue extends JFrame {
         titleLabel.setFont(pixelFont); 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        //Page d'accueil
         JLabel catalogueLabel = new JLabel("CATALOGUE");
         JLabel categorieLabel = new JLabel("CATEGORIES");
         JLabel quitterLabel = new JLabel("Quitter");
         
-        
-     // Create custom panels for labels
+        //Bordure ronde
+
         RoundedPanel catalogueLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
         RoundedPanel categorieLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
         RoundedPanel quitterLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
 
-        // Set some padding around the labels
+
         catalogueLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         categorieLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         quitterLabelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         
-        
-        // Add labels to custom panels
         catalogueLabelPanel.add(catalogueLabel, BorderLayout.CENTER);
         categorieLabelPanel.add(categorieLabel, BorderLayout.CENTER);
         quitterLabelPanel.add(quitterLabel, BorderLayout.SOUTH);
