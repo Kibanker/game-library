@@ -462,7 +462,8 @@ public class Vue extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
-        JLabel rec = new JLabel("\n Dans la même catégorie: " + jeu.categorie);
+        JLabel rec = new JLabel("Dans la même catégorie: " + jeu.categorie);
+        rec.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
         rec.setForeground(Color.WHITE);
         rec.setFont(new Font("Arial", Font.BOLD, 25));
         JPanel recoPanel = new JPanel(new BorderLayout());
