@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.io.File;
@@ -107,6 +110,25 @@ public class DescriptionJeuPanel extends JPanel {
             starButton.setContentAreaFilled(false); // Supprimer le remplissage du bouton
             starButton.setFocusPainted(false); // Supprimer la mise au point du bouton
             starButton.setOpaque(false); // Rendre le bouton transparent
+            starButton.setEnabled(false);
+            starButton.addMouseListener(new MouseAdapter() {
+
+            	public void mouseEntered(MouseEvent e) {
+            		for (Component component : ratingPanel.getComponents()) {
+                        if (component instanceof JButton) {
+                            ((JButton) component).setEnabled(true);
+                        }
+                    }
+                }
+            	public void mouseExited(MouseEvent e) {
+            		for (Component component : ratingPanel.getComponents()) {
+                        if (component instanceof JButton) {
+                            ((JButton) component).setEnabled(false);
+                        }
+                    }
+                }
+
+            });
             starButton.addActionListener(e -> {
                 // Vérifier si l'utilisateur a déjà voté pour ce jeu
                 if (!voted) {
@@ -119,8 +141,16 @@ public class DescriptionJeuPanel extends JPanel {
                         }
                     }
                     voted = true; // Mettre à jour l'état du vote à true
-                } else {
-                    JOptionPane.showMessageDialog(this, "Vous avez déjà voté pour ce jeu.", "Vote déjà effectué", JOptionPane.WARNING_MESSAGE);
+                } 
+                else // Si on n'a déjà mis une note 
+                {
+                	// Suppression de la dernière ligne
+                	int lastIndex = descriptionArea.getText().lastIndexOf('\n'); // Trouver l'index du dernier saut de ligne
+                    if (lastIndex != -1) { // Si le saut de ligne est trouvé
+                        descriptionArea.setText(descriptionArea.getText().substring(0, lastIndex) ); // Extraire la sous-chaîne jusqu'à l'index du dernier saut de ligne
+                    }
+                    // Ajout de la modification de la note.
+                    descriptionArea.append("\nNote donnée par l'utilisateur: " + rating);
                 }
             });
             ratingPanel.add(starButton);
