@@ -25,7 +25,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); 
 
-        ImageIcon icon = new ImageIcon("files/appBg.png"); 
+        ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
         setIconImage(icon.getImage());
 
         JLabel titleLabel = new JLabel("Virtual Arcade");
@@ -80,7 +80,7 @@ public class Vue extends JFrame {
             }
         });
         
-        accueilPanel = new BackgroundPanel("files/appBg.png");
+        accueilPanel = new BackgroundPanel("files/appIcon.jpg");
         accueilPanel.setLayout(new GridLayout(3, 1));
         accueilPanel.setBackground(Color.BLACK);
         accueilPanel.add(titleLabel);
