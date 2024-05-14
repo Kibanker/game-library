@@ -1,9 +1,7 @@
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.io.File;
 
 public class DescriptionJeuPanel extends JPanel {
     private Jeu jeu;
@@ -68,7 +66,7 @@ public class DescriptionJeuPanel extends JPanel {
                     "Entreprise: " + jeu.entreprise + "\n" +
                     "Note générale: " + jeu.noteGen + "\n" +
                     "Notre note: " + noteCreaNA + "\n" +
-                    "Média associé: "  + (jeu.mediaAssocie.equals("null") ? "N/A" : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    (jeu.mediaAssocie != null ? "Média associé: " + jeu.mediaAssocie + "\n" : "") + // Condition ajoutée pour le média associé
                     "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         } else {
             descriptionArea.setText("Catégorie: " + jeu.categorie + "\n" +
@@ -76,7 +74,7 @@ public class DescriptionJeuPanel extends JPanel {
                     "Entreprise: " + jeu.entreprise + "\n" +
                     "Note générale: " + jeu.noteGen + "\n" +
                     "Notre note: " + jeu.noteCrea + "\n" +
-                    "Média associé: "  + (jeu.mediaAssocie.equals("null") ? "N/A" : jeu.mediaAssocie) + "\n" + // Condition ajoutée pour le média associé
+                    (jeu.mediaAssocie != null ? "Média associé: " + jeu.mediaAssocie + "\n" : "") + // Condition ajoutée pour le média associé
                     "Nominations: " + (jeu.nominations.equals("null") ? "N/A" : jeu.nominations));
         }
 
@@ -109,27 +107,7 @@ public class DescriptionJeuPanel extends JPanel {
             starButton.setContentAreaFilled(false); // Supprimer le remplissage du bouton
             starButton.setFocusPainted(false); // Supprimer la mise au point du bouton
             starButton.setOpaque(false); // Rendre le bouton transparent
-            starButton.setEnabled(false);
-            starButton.addMouseListener(new MouseAdapter() {
-            	
-            	public void mouseEntered(MouseEvent e) {
-            		for (Component component : ratingPanel.getComponents()) {
-                        if (component instanceof JButton) {
-                            ((JButton) component).setEnabled(true);
-                        }
-                    }
-                }
-            	public void mouseExited(MouseEvent e) {
-            		for (Component component : ratingPanel.getComponents()) {
-                        if (component instanceof JButton) {
-                            ((JButton) component).setEnabled(false);
-                        }
-                    }
-                }
-            	
-            });
             starButton.addActionListener(e -> {
-            	
                 // Vérifier si l'utilisateur a déjà voté pour ce jeu
                 if (!voted) {
                     // Mettre à jour la note dans la description du jeu
@@ -141,16 +119,8 @@ public class DescriptionJeuPanel extends JPanel {
                         }
                     }
                     voted = true; // Mettre à jour l'état du vote à true
-                } 
-                else {
-                	// Suppression de la dernière ligne
-                	int lastIndex = descriptionArea.getText().lastIndexOf('\n'); // Trouver l'index de la dernière occurrence du saut de ligne
-                    if (lastIndex != -1) { // Si le saut de ligne est trouvé
-                        descriptionArea.setText(descriptionArea.getText().substring(0, lastIndex) ); // Extraire la sous-chaîne jusqu'à l'index du dernier saut de ligne
-                    }
-                    // Ajout de la modification de la note.
-                    descriptionArea.append("\nNote donnée par l'utilisateur: " + rating);
-                    //JOptionPane.showMessageDialog(this, "Vous avez déjà voté pour ce jeu.", "Vote déjà effectué", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vous avez déjà voté pour ce jeu.", "Vote déjà effectué", JOptionPane.WARNING_MESSAGE);
                 }
             });
             ratingPanel.add(starButton);
@@ -159,6 +129,30 @@ public class DescriptionJeuPanel extends JPanel {
         descriptionPanel.add(ratingPanel, BorderLayout.SOUTH);
 
         add(descriptionPanel, BorderLayout.EAST);
+
+     // Ajout des images en dessous de la description
+        JPanel imagesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        imagesPanel.setBackground(Color.BLACK);
+
+        int maxWidth = 400; // Largeur maximale des images
+
+        File folder = new File("files/" + jeu.nom); // Dossier du jeu correspondant
+        File[] listOfFiles = folder.listFiles(); // Liste des fichiers dans le dossier
+
+        if (listOfFiles != null) {
+            for (int i = 0; i < Math.min(3, listOfFiles.length); i++) {
+                if (listOfFiles[i].isFile()) {
+                    ImageIcon icon = new ImageIcon(listOfFiles[i].getAbsolutePath());
+                    Image scaledImage = icon.getImage().getScaledInstance(maxWidth, -1, Image.SCALE_SMOOTH);
+                    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+                    JLabel imageLabel1 = new JLabel(scaledIcon);
+                    imagesPanel.add(imageLabel1);
+                }
+            }
+        }
+
+        
+        add(imagesPanel, BorderLayout.SOUTH);
     }
 
     private Border createGameBorder(String name) {
