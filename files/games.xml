@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <jeux>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -39,7 +41,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -78,7 +82,9 @@
         
         
         <id>Baldur's Gate III</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -117,7 +123,9 @@
         
         
         <note>4</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -156,7 +164,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -195,7 +205,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -234,7 +246,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -273,7 +287,9 @@
         
         
         <id>Elden Ring</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -312,7 +328,9 @@
         
         
         <note>1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -351,7 +369,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -390,7 +410,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -429,7 +451,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -468,7 +492,9 @@
         
         
         <id>Cyberpunk 2077</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -507,7 +533,9 @@
         
         
         <note>2</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -546,51 +574,70 @@
         
         
         <commentaires>
-                                                                        		
+                                                                                                		
+            
+            
             
             
             
             
             
             <uncommentaire>yep</uncommentaire>
-                                                                        		
+                                                                                                		
+            
+            
             
             
             
             
             
             <uncommentaire>cool</uncommentaire>
-                                                                        		
+                                                                                                		
+            
+            
             
             
             
             
             
             <uncommentaire>comment</uncommentaire>
+                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            <uncommentaire>salut</uncommentaire>
+                                                                                            
+            
+            
+            
+            
+            
+            
+            <uncommentaire>salut</uncommentaire>
                                                                                 
             
             
             
             
             
-            <uncommentaire>salut</uncommentaire>
-                                                                    
-            
-            
-            
-            
-            <uncommentaire>salut</uncommentaire>
-                                                        
-            
-            
-            
             <uncommentaire>commentaire</uncommentaire>
-                                            
+                                                                    
         
         
+            
+            
             <uncommentaire>trop cool</uncommentaire>
+                                
+        
+            <uncommentaire>hi</uncommentaire>
         </commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -629,7 +676,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -668,7 +717,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -707,7 +758,9 @@
         
         
         <id>Hogwarts Legacy</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -746,7 +799,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -785,7 +840,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -824,7 +881,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -863,7 +922,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -902,7 +963,9 @@
         
         
         <id>Red Dead Redemption</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -941,7 +1004,9 @@
         
         
         <note>1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -980,7 +1045,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1019,7 +1086,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -1058,7 +1127,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1097,7 +1168,9 @@
         
         
         <id>Hitman</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1136,7 +1209,9 @@
         
         
         <note>3</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1175,7 +1250,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1214,7 +1291,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -1253,7 +1332,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1292,7 +1373,9 @@
         
         
         <id>Final Fantasy XVI</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1331,7 +1414,9 @@
         
         
         <note>1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1370,7 +1455,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1409,7 +1496,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -1448,7 +1537,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1487,7 +1578,9 @@
         
         
         <id>Overwatch 2</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1526,7 +1619,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1565,7 +1660,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1604,7 +1701,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -1643,7 +1742,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1682,7 +1783,9 @@
         
         
         <id>GTA V</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1721,7 +1824,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1760,7 +1865,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1799,7 +1906,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -1838,7 +1947,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1877,7 +1988,9 @@
         
         
         <id>FIFA</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1916,7 +2029,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -1955,7 +2070,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -1994,7 +2111,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -2033,7 +2152,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2072,7 +2193,9 @@
         
         
         <id>League of Legends</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2111,7 +2234,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2150,7 +2275,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -2189,7 +2316,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -2228,7 +2357,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2267,7 +2398,9 @@
         
         
         <id>The Witcher</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2306,7 +2439,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2345,7 +2480,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -2384,7 +2521,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -2423,7 +2562,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2462,7 +2603,9 @@
         
         
         <id>Grand Turismo</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2501,7 +2644,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2540,7 +2685,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -2579,7 +2726,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -2618,7 +2767,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2657,7 +2808,9 @@
         
         
         <id>Uncharted</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2696,7 +2849,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2735,7 +2890,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -2774,7 +2931,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -2813,7 +2972,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2852,7 +3013,9 @@
         
         
         <id>Street Fighter</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2891,7 +3054,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -2930,7 +3095,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -2969,7 +3136,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3008,7 +3177,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3047,7 +3218,9 @@
         
         
         <id>The Last of Us</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3086,7 +3259,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3125,7 +3300,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -3164,7 +3341,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3203,7 +3382,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3242,7 +3423,9 @@
         
         
         <id>Assassin's Creed</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3281,7 +3464,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3320,7 +3505,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -3359,7 +3546,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3398,7 +3587,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3437,7 +3628,9 @@
         
         
         <id>Civilization VI</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3476,7 +3669,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3515,7 +3710,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -3554,7 +3751,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3593,7 +3792,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3632,7 +3833,9 @@
         
         
         <id>Farming Simulator 2</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3671,7 +3874,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3710,7 +3915,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -3749,7 +3956,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3788,7 +3997,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3827,7 +4038,9 @@
         
         
         <id>Sims 4</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3866,7 +4079,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -3905,7 +4120,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -3944,7 +4161,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -3983,7 +4202,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4022,7 +4243,9 @@
         
         
         <id>Portal 2</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4061,7 +4284,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4100,7 +4325,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -4139,7 +4366,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -4178,7 +4407,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4217,7 +4448,9 @@
         
         
         <id>Little Nightmare II</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4256,7 +4489,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4295,7 +4530,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -4334,7 +4571,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -4373,7 +4612,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4412,7 +4653,9 @@
         
         
         <id>Bloodborne</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4451,7 +4694,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4490,7 +4735,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -4529,7 +4776,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -4568,7 +4817,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4607,7 +4858,9 @@
         
         
         <id>BioShock</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4646,7 +4899,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4685,7 +4940,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -4724,7 +4981,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -4763,7 +5022,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4802,7 +5063,9 @@
         
         
         <id>Borderlands</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4841,7 +5104,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4880,7 +5145,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -4919,7 +5186,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -4958,7 +5227,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -4997,7 +5268,9 @@
         
         
         <id>Pokémon - Version Platine</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5036,7 +5309,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5075,7 +5350,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -5114,7 +5391,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -5153,7 +5432,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5192,7 +5473,9 @@
         
         
         <id>Ratchet et Clank</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5231,7 +5514,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5270,7 +5555,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -5309,7 +5596,9 @@
     
     
     </jeu>
-                                                                                                                                                            
+                                                                                                                                                                    
+    
+    
     
     
     
@@ -5348,7 +5637,9 @@
     
     
     <jeu>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5387,7 +5678,9 @@
         
         
         <id>Zelda - Tears of the Kingdom</id>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5426,7 +5719,9 @@
         
         
         <note>-1</note>
-                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
@@ -5465,7 +5760,9 @@
         
         
         <commentaires>null</commentaires>
-                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
@@ -5504,7 +5801,9 @@
     
     
     </jeu>
-                                                                                                                                                        
+                                                                                                                                                                
+
+
 
 
 
