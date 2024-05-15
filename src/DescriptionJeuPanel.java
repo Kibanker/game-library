@@ -176,49 +176,24 @@ public class DescriptionJeuPanel extends JPanel {
             }
         }
 
-        add(imagesPanel, BorderLayout.SOUTH);
-
         // Ajout de la section de commentaires en dessous des jeux en recommandation
         commentsPanel = new JPanel(new BorderLayout());
         commentsPanel.setBackground(Color.BLACK);
         
         // Panneau des recommandations
-        JPanel recommendationsPanel = new JPanel(new BorderLayout());
-        recommendationsPanel.setBackground(Color.BLACK);
-        recommendationsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Commentaires", 0, 0, new Font("Arial", Font.BOLD, 18), Color.WHITE));
-        
-        
-//        // Zone de texte pour entrer les commentaires
-//        commentField = new JTextArea();
-//        commentField.setEditable(false);
-//        commentField.setForeground(Color.WHITE);
-//        commentField.setBackground(Color.DARK_GRAY);
-//        commentField.setFont(new Font("Arial", Font.PLAIN, 16));
-//        commentsPanel.add(commentField, BorderLayout.CENTER);
+        JPanel commentairesBorder = new JPanel(new BorderLayout());
+        commentairesBorder.setBackground(Color.BLACK);
+        commentairesBorder.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Commentaires", 0, 0, new Font("Arial", Font.BOLD, 18), Color.WHITE));
+        commentairesBorder.add(commentsPanel);
 
-//        // Bouton pour soumettre les commentaires
-//        JButton submitCommentButton = new JButton("Ajouter un commentair");
-//        submitCommentButton.setFont(new Font("Arial", Font.BOLD, 16));
-//        commentsSection.add(submitCommentButton, BorderLayout.EAST);
-//
-//        commentsPanel.add(commentsSection, BorderLayout.NORTH);
-//
-//        // Panneau pour afficher les commentaires soumis
-//        JPanel displayCommentsPanel = new JPanel();
-//        displayCommentsPanel.setBackground(Color.BLACK);
-//        commentsPanel.add(displayCommentsPanel, BorderLayout.CENTER);
-//        
-//        submitCommentButton.addActionListener(e -> {
-//            String comment = commentField.getText().trim();
-//            if (!comment.isEmpty()) {
-//                comments.add(comment);
-//                commentField.setText("");
-//                displayComments(displayCommentsPanel);
-//            }
-//        });
-        
-        recommendationsPanel.add(commentsPanel, BorderLayout.SOUTH);
-        add(recommendationsPanel, BorderLayout.SOUTH);
+        // Panneau sud intermédiaire
+        JPanel southPanel = new JPanel(new BorderLayout());
+        southPanel.setBackground(Color.BLACK);
+        southPanel.add(imagesPanel, BorderLayout.NORTH);
+        southPanel.add(commentairesBorder, BorderLayout.SOUTH);
+
+        // Ajout du panneau sud au panneau principal
+        add(southPanel, BorderLayout.SOUTH);
     }
 
     private Border createGameBorder(String name) {
@@ -237,8 +212,6 @@ public class DescriptionJeuPanel extends JPanel {
             commentLabel.setForeground(Color.WHITE);
             commentsPanel.add(commentLabel);
 		}
-        
-
         
         commentsPanel.revalidate();
         commentsPanel.repaint();
