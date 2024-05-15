@@ -19,6 +19,7 @@ public class Vue extends JFrame {
     Color lightBlue = new Color(180, 220, 250);
     
     private ArrayList<Jeu> biblio;
+    String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
     
 
     class RoundedPanel extends JPanel {
@@ -395,12 +396,9 @@ public class Vue extends JFrame {
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        categoryPanel.add(titleLabel);
+        categoryPanel.add(titleLabel);    
 
-        // Liste des catégories disponibles
-        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
-
-        for (String category : categories) {
+        for (String category : this.categories) {
             JLabel categoryLabel = new JLabel(category);
             categoryLabel.setForeground(Color.WHITE);
             categoryLabel.setFont(new Font("Arial", Font.BOLD, 30)); 
@@ -501,11 +499,8 @@ public class Vue extends JFrame {
         categoriesMenu.setBackground(new Color(173, 216, 230));
         catalogueMenu.setBackground(new Color(173, 216, 230));
 
-        // Liste des catégories disponibles
-        String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
-
         // Création d'un bouton pour chaque catégorie
-        for (String category : categories) {
+        for (String category : this.categories) {
             JMenuItem categoryButton = new JMenuItem(category);
             categoryButton.setBackground(new Color(173, 216, 230));
 
@@ -663,13 +658,16 @@ public class Vue extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         detailJeuPanel.add(descriptionPanel, gbc); // Ajout de la description au centre
         
-        // Section des commentaires
-        JLabel commentLabel = new JLabel("Commentaires");
+         //Section des commentaires
+        JLabel commentLabel = new JLabel("Qu'en avez-vous pensé ?");
         commentLabel.setForeground(lightBlue);
+        commentLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         commentLabel.setFont(new Font("Arial", Font.BOLD, 25));
         gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.anchor = GridBagConstraints.CENTER;
         detailJeuPanel.add(commentLabel, gbc); // Ajout du label des commentaires
+        
+        
         
         JTextArea commentArea = new JTextArea(5, 20);
         commentArea.setLineWrap(true);
@@ -679,11 +677,10 @@ public class Vue extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         detailJeuPanel.add(scrollPane, gbc); // Ajout de la zone de texte des commentaires
         
-        JButton submitCommentButton = new JButton("Ajouter un commentaire");
+        JButton submitCommentButton = new JButton("Ajouter mon commentaire");
+        submitCommentButton.setFont(new Font("Arial", Font.PLAIN, 15));
         submitCommentButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        submitCommentButton.setForeground(Color.WHITE);
-        submitCommentButton.setBackground(Color.BLACK);
-        submitCommentButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        submitCommentButton.setSize(new Dimension(50, 50));
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.LINE_START;
         detailJeuPanel.add(submitCommentButton, gbc); // Ajout du bouton pour ajouter un commentaire
@@ -691,12 +688,14 @@ public class Vue extends JFrame {
         submitCommentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String comment = commentArea.getText();
-                // Enregistrer le commentaire (vous devrez ajouter la logique pour cela)
-                // Ici, vous pouvez simplement afficher le commentaire dans la console
-                System.out.println("Nouveau commentaire ajouté : " + comment);
-                // Effacer le champ de commentaire après soumission
-                commentArea.setText("");
+            	if (!commentArea.getText().isEmpty()) {
+                    descriptionPanel.displayComments(commentArea.getText());
+                    commentArea.setText("");
+				} else {
+					JOptionPane.showMessageDialog(null, "Vous ne pouvez pas soumettre de commentaire vide", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+
+                
             }
         });
 

@@ -10,6 +10,8 @@ public class DescriptionJeuPanel extends JPanel {
     private boolean voted; // Variable pour suivre si l'utilisateur a déjà voté pour ce jeu
     private String noteCreaNA = "N/A";
     private ArrayList<String> comments; // Liste des commentaires
+    JPanel commentsPanel;
+    JTextArea commentField;
 
     public DescriptionJeuPanel(Jeu jeu) {
         this.jeu = jeu;
@@ -177,46 +179,43 @@ public class DescriptionJeuPanel extends JPanel {
         add(imagesPanel, BorderLayout.SOUTH);
 
         // Ajout de la section de commentaires en dessous des jeux en recommandation
-        JPanel commentsPanel = new JPanel(new BorderLayout());
+        commentsPanel = new JPanel(new BorderLayout());
         commentsPanel.setBackground(Color.BLACK);
         
         // Panneau des recommandations
         JPanel recommendationsPanel = new JPanel(new BorderLayout());
         recommendationsPanel.setBackground(Color.BLACK);
-        recommendationsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Commentaire", 0, 0, new Font("Arial", Font.BOLD, 18), Color.WHITE));
+        recommendationsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Commentaires", 0, 0, new Font("Arial", Font.BOLD, 18), Color.WHITE));
         
-
-        // Ajouter les commentaires en dessous des recommandations
-        JPanel commentsSection = new JPanel(new BorderLayout());
-        commentsSection.setBackground(Color.BLACK);
         
-        // Zone de texte pour entrer les commentaires
-        JTextField commentField = new JTextField();
-        commentField.setForeground(Color.WHITE);
-        commentField.setBackground(Color.DARK_GRAY);
-        commentField.setFont(new Font("Arial", Font.PLAIN, 16));
-        commentsSection.add(commentField, BorderLayout.CENTER);
+//        // Zone de texte pour entrer les commentaires
+//        commentField = new JTextArea();
+//        commentField.setEditable(false);
+//        commentField.setForeground(Color.WHITE);
+//        commentField.setBackground(Color.DARK_GRAY);
+//        commentField.setFont(new Font("Arial", Font.PLAIN, 16));
+//        commentsPanel.add(commentField, BorderLayout.CENTER);
 
-        // Bouton pour soumettre les commentaires
-        JButton submitCommentButton = new JButton("Ajouter un commentaire");
-        submitCommentButton.setFont(new Font("Arial", Font.BOLD, 16));
-        commentsSection.add(submitCommentButton, BorderLayout.EAST);
-
-        commentsPanel.add(commentsSection, BorderLayout.NORTH);
-
-        // Panneau pour afficher les commentaires soumis
-        JPanel displayCommentsPanel = new JPanel();
-        displayCommentsPanel.setBackground(Color.BLACK);
-        commentsPanel.add(displayCommentsPanel, BorderLayout.CENTER);
-        
-        submitCommentButton.addActionListener(e -> {
-            String comment = commentField.getText().trim();
-            if (!comment.isEmpty()) {
-                comments.add(comment);
-                commentField.setText("");
-                displayComments(displayCommentsPanel);
-            }
-        });
+//        // Bouton pour soumettre les commentaires
+//        JButton submitCommentButton = new JButton("Ajouter un commentair");
+//        submitCommentButton.setFont(new Font("Arial", Font.BOLD, 16));
+//        commentsSection.add(submitCommentButton, BorderLayout.EAST);
+//
+//        commentsPanel.add(commentsSection, BorderLayout.NORTH);
+//
+//        // Panneau pour afficher les commentaires soumis
+//        JPanel displayCommentsPanel = new JPanel();
+//        displayCommentsPanel.setBackground(Color.BLACK);
+//        commentsPanel.add(displayCommentsPanel, BorderLayout.CENTER);
+//        
+//        submitCommentButton.addActionListener(e -> {
+//            String comment = commentField.getText().trim();
+//            if (!comment.isEmpty()) {
+//                comments.add(comment);
+//                commentField.setText("");
+//                displayComments(displayCommentsPanel);
+//            }
+//        });
         
         recommendationsPanel.add(commentsPanel, BorderLayout.SOUTH);
         add(recommendationsPanel, BorderLayout.SOUTH);
@@ -227,15 +226,20 @@ public class DescriptionJeuPanel extends JPanel {
         return BorderFactory.createCompoundBorder(new DropShadowBorder(), emptyBorder);
     }
 
-    private void displayComments(JPanel commentsPanel) {
+    void displayComments(String comment) {
         commentsPanel.removeAll();
         commentsPanel.setLayout(new BoxLayout(commentsPanel, BoxLayout.Y_AXIS));
-        for (String comment : comments) {
-            JLabel commentLabel = new JLabel(comment);
+        
+        comments.add(comment);
+        
+        for (String com : comments) {
+            JLabel commentLabel = new JLabel(com);
             commentLabel.setForeground(Color.WHITE);
-            commentLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             commentsPanel.add(commentLabel);
-        }
+		}
+        
+
+        
         commentsPanel.revalidate();
         commentsPanel.repaint();
     }
