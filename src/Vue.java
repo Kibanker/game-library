@@ -233,17 +233,30 @@ public class Vue extends JFrame {
 
     private void afficherPageCatalogue() {
         getContentPane().removeAll();
-        
-        
+
         int numColumns = 4;
         int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
-        
-        BackgroundPanel cataloguePanel = new BackgroundPanel("files/background.jpg");
-        cataloguePanel.setLayout(new GridLayout(numRows, numColumns, 20, 15));
-        
 
+        // Panneau principal avec BorderLayout
+        BackgroundPanel mainPanel = new BackgroundPanel("files/background.jpg");
+        mainPanel.setLayout(new BorderLayout());
+        
+        // Création du titre du catalogue
+        JLabel catalogueTitle = new JLabel("CATALOGUE");
+        pixelFont = pixelFont.deriveFont(Font.PLAIN, 45);
+        catalogueTitle.setFont(pixelFont);
+        catalogueTitle.setForeground(lightBlue);
+        catalogueTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        // Ajout du titre en haut du panneau principal
+        mainPanel.add(catalogueTitle, BorderLayout.NORTH);
+
+        // Panneau pour le catalogue avec GridLayout
+        JPanel catalogueGridPanel = new JPanel(new GridLayout(numRows, numColumns, 20, 15));
+        catalogueGridPanel.setOpaque(false); // Rendre le panneau transparent
+
+        // Ajout des jeux au panneau de grille
         for (Jeu jeu : biblio) {
-        	//cataloguePanel = new BackgroundPanel("files/background.jpg");
             JPanel panel = new JPanel(new BorderLayout());
             panel.setBorder(createGameBorder(jeu.nom)); 
             panel.setBackground(Color.BLACK); 
@@ -256,7 +269,6 @@ public class Vue extends JFrame {
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             panel.add(imageLabel, BorderLayout.CENTER);
-            
 
             imageLabel.addMouseListener(new MouseAdapter() {
                 @Override
@@ -265,21 +277,26 @@ public class Vue extends JFrame {
                 }
             });
 
-            cataloguePanel.add(panel);
-            
+            catalogueGridPanel.add(panel);
         }
+
+        // Ajout du panneau de grille au centre du panneau principal
+        mainPanel.add(catalogueGridPanel, BorderLayout.CENTER);
         
-        
-        add(cataloguePanel, BorderLayout.CENTER); 
-        JScrollPane catalogueScrollPane = new JScrollPane(cataloguePanel);
+        // Ajout du panneau principal dans un JScrollPane
+        JScrollPane catalogueScrollPane = new JScrollPane(mainPanel);
         catalogueScrollPane.setBorder(BorderFactory.createEmptyBorder());
         catalogueScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         catalogueScrollPane.setOpaque(true); 
         catalogueScrollPane.getViewport().setOpaque(true); 
+
+        // Ajout du JScrollPane au content pane
         add(catalogueScrollPane, BorderLayout.CENTER);
+        
         revalidate(); 
         repaint();
     }
+
     
     private void afficherPageContact() {
         getContentPane().removeAll();
