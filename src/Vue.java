@@ -234,8 +234,6 @@ public class Vue extends JFrame {
         getContentPane().removeAll();
         
         
-
-        
         int numColumns = 4;
         int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
         
@@ -640,24 +638,27 @@ public class Vue extends JFrame {
         
         JButton retourButton = new JButton("◄ Retour au catalogue");
         retourButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        retourButton.setForeground(Color.WHITE);
-        retourButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        retourButton.setForeground(Color.BLACK);
+        
+        
+        
         retourButton.addActionListener(e -> afficherPageCatalogue());
+        
         retourButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-            	retourButton.setForeground(lightBlue); 
+            	retourButton.setForeground(lightBlue);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-            	retourButton.setForeground(Color.WHITE); 
+            	retourButton.setForeground(Color.BLACK);
+
             }
         });
 
-        JPanel buttonPanel = new JPanel(new BorderLayout());
-        buttonPanel.add(retourButton, BorderLayout.WEST);
-        buttonPanel.setBackground(new Color(0, 0, 0, 0));
+        
+
         
         // Utilisation d'un GridBagLayout pour disposer les composants
         detailJeuPanel.setLayout(new GridBagLayout());
@@ -666,7 +667,8 @@ public class Vue extends JFrame {
         // Ajout des détails à gauche de la description
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.LINE_START;
-        detailJeuPanel.add(buttonPanel, gbc); // Ajout du bouton de retour en haut à gauche
+        detailJeuPanel.add(retourButton, gbc); // Ajout du bouton de retour en haut à gauche
+        
         
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -715,7 +717,7 @@ public class Vue extends JFrame {
         });
 
         JPanel recommendations = new JPanel(new GridLayout(0, 3, 20, 15));
-        recommendations.setBackground(Color.BLACK);
+        recommendations.setBackground(new Color(0,0,0,0));
         
         ArrayList<Jeu> reco = new ArrayList<Jeu>();
         
