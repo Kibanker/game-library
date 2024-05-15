@@ -17,6 +17,7 @@ public class Vue extends JFrame {
     private JPanel detailJeuPanel;
     private JPanel contactPanel;
     Color lightBlue = new Color(180, 220, 250);
+    Font pixelFont;
     
     private ArrayList<Jeu> biblio;
     String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
@@ -61,7 +62,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK); 
         
-        Font pixelFont = loadFont("files/Crang.ttf");
+        pixelFont = loadFont("files/Crang.ttf");
         pixelFont = pixelFont.deriveFont(Font.BOLD, 80);
 
         ImageIcon icon = new ImageIcon("files/appIcon.jpg"); 
@@ -283,15 +284,17 @@ public class Vue extends JFrame {
     private void afficherPageContact() {
         getContentPane().removeAll();
         
+        pixelFont = pixelFont.deriveFont(Font.PLAIN, 35);
+        
         contactPanel = new JPanel();
-        contactPanel.setBackground(Color.BLACK);
+        contactPanel.setBackground(new Color(249, 234, 213));
         contactPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
         JLabel titleLabel = new JLabel("Des questions? Des recommandations?");
         titleLabel.setForeground(lightBlue);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 35));
+        titleLabel.setFont(pixelFont);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -299,8 +302,8 @@ public class Vue extends JFrame {
         contactPanel.add(titleLabel, gbc);
 
         JLabel subtitleLabel = new JLabel("Contactez-nous!");
-        subtitleLabel.setForeground(Color.WHITE);
-        subtitleLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        subtitleLabel.setForeground(new Color(251, 150, 96));
+        subtitleLabel.setFont(pixelFont);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
@@ -308,7 +311,7 @@ public class Vue extends JFrame {
         contactPanel.add(subtitleLabel, gbc);
 
         JLabel nameLabel = new JLabel("Nom:");
-        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setForeground(Color.BLACK);
         nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -323,7 +326,7 @@ public class Vue extends JFrame {
         contactPanel.add(nameField, gbc);
 
         JLabel emailLabel = new JLabel("Email:");
-        emailLabel.setForeground(Color.WHITE);
+        emailLabel.setForeground(Color.BLACK);
         emailLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -337,7 +340,7 @@ public class Vue extends JFrame {
         contactPanel.add(emailField, gbc);
 
         JLabel messageLabel = new JLabel("Message:");
-        messageLabel.setForeground(Color.WHITE);
+        messageLabel.setForeground(Color.BLACK);
         messageLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -354,6 +357,7 @@ public class Vue extends JFrame {
         contactPanel.add(scrollPane, gbc);
 
         JButton submitButton = new JButton("Envoyer");
+        submitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.LINE_START;
@@ -381,11 +385,11 @@ public class Vue extends JFrame {
         
      // Créer un panneau pour le texte en bas
         JPanel footerPanel = new JPanel();
-        footerPanel.setBackground(Color.BLACK);
+        footerPanel.setBackground(new Color(249, 234, 213));
         footerPanel.setLayout(new BorderLayout());
 
         JLabel footerLabel = new JLabel("<html><center>Cette application est développée par:<br>BOUTOU Frederic<br>DEMONT Julie<br>VINCENT Noa<br><br>VIRTUAL ARCADE ©</center></html>");
-        footerLabel.setForeground(Color.WHITE);
+        footerLabel.setForeground(Color.BLACK);
         footerLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         footerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -404,20 +408,35 @@ public class Vue extends JFrame {
         
         
         BackgroundPanel categoryPanel = new BackgroundPanel("files/background.jpg");
-        categoryPanel.setLayout(new GridLayout(0, 1)); // Utiliser une disposition en colonnes pour afficher les catégories 
+        //categoryPanel.setLayout(new GridLayout(0, 1)); // Utiliser une disposition en colonnes pour afficher les catégories 
         JLabel titleLabel = new JLabel("CATEGORIES");
         titleLabel.setForeground(lightBlue);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); 
+        pixelFont = pixelFont.deriveFont(Font.PLAIN, 45);
+        titleLabel.setFont(pixelFont);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        categoryPanel.add(titleLabel);    
+        categoryPanel.add(titleLabel, BorderLayout.NORTH);   
+        
+        
+        categoryPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(20, 0, 20, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        categoryPanel.add(titleLabel, gbc);
+        
+        gbc.gridy = 1;
 
         for (String category : this.categories) {
             JLabel categoryLabel = new JLabel(category);
+            RoundedPanel categoryLabelPan = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
+            categoryLabelPan.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+            categoryLabelPan.add(categoryLabel, BorderLayout.CENTER);
+            
             categoryLabel.setForeground(Color.WHITE);
+            categoryLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             categoryLabel.setFont(new Font("Arial", Font.BOLD, 30)); 
             categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            categoryLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+            
             // Ajouter un écouteur d'événements pour rediriger vers la page de la catégorie correspondante
             categoryLabel.addMouseListener(new MouseAdapter() {
                 @Override
@@ -435,8 +454,10 @@ public class Vue extends JFrame {
                     categoryLabel.setForeground(Color.WHITE);
                 }
             });
-
-            categoryPanel.add(categoryLabel);
+            
+            
+            categoryPanel.add(categoryLabelPan, gbc);
+            gbc.gridy += 1;
         }
 
         JScrollPane categoryScrollPane = new JScrollPane(categoryPanel);
@@ -802,8 +823,9 @@ public class Vue extends JFrame {
 
         // Ajouter un titre pour indiquer la catégorie sélectionnée
         JLabel categoryTitle = new JLabel(category);
-        categoryTitle.setForeground(Color.WHITE);
-        categoryTitle.setFont(new Font("Arial", Font.BOLD, 35));
+        categoryTitle.setForeground(lightBlue);
+        pixelFont = pixelFont.deriveFont(Font.BOLD, 45);
+        categoryTitle.setFont(pixelFont);
         categoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
         categoryPanel.add(categoryTitle, BorderLayout.NORTH); // Ajouter le titre en haut
 
