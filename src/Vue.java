@@ -662,9 +662,44 @@ public class Vue extends JFrame {
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         detailJeuPanel.add(descriptionPanel, gbc); // Ajout de la description au centre
-     
         
+        // Section des commentaires
+        JLabel commentLabel = new JLabel("Commentaires");
+        commentLabel.setForeground(lightBlue);
+        commentLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        detailJeuPanel.add(commentLabel, gbc); // Ajout du label des commentaires
         
+        JTextArea commentArea = new JTextArea(5, 20);
+        commentArea.setLineWrap(true);
+        commentArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(commentArea);
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        detailJeuPanel.add(scrollPane, gbc); // Ajout de la zone de texte des commentaires
+        
+        JButton submitCommentButton = new JButton("Ajouter un commentaire");
+        submitCommentButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        submitCommentButton.setForeground(Color.WHITE);
+        submitCommentButton.setBackground(Color.BLACK);
+        submitCommentButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        detailJeuPanel.add(submitCommentButton, gbc); // Ajout du bouton pour ajouter un commentaire
+        
+        submitCommentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String comment = commentArea.getText();
+                // Enregistrer le commentaire (vous devrez ajouter la logique pour cela)
+                // Ici, vous pouvez simplement afficher le commentaire dans la console
+                System.out.println("Nouveau commentaire ajouté : " + comment);
+                // Effacer le champ de commentaire après soumission
+                commentArea.setText("");
+            }
+        });
+
         JPanel recommendations = new JPanel(new GridLayout(0, 3, 20, 15));
         recommendations.setBackground(Color.BLACK);
         
@@ -672,8 +707,8 @@ public class Vue extends JFrame {
         
         for (Jeu j : biblio) {
         	if (j.categorie.equals(jeu.categorie) && !j.nom.equals(jeu.nom)) {
-				reco.add(j);
-			}
+    			reco.add(j);
+    		}
         }
         
         while(reco.size() > 3) {
@@ -681,8 +716,8 @@ public class Vue extends JFrame {
         }
         
         for (Jeu j : reco) {
-			JPanel panel = new JPanel(new BorderLayout());
-			panel.setBorder(createGameBorder(j.nom));
+    		JPanel panel = new JPanel(new BorderLayout());
+    		panel.setBorder(createGameBorder(j.nom));
             panel.setBackground(Color.BLACK);
             
 
@@ -703,11 +738,11 @@ public class Vue extends JFrame {
             });
 
             recommendations.add(panel);
-			
-		}
+    		
+    	}
         
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
         JLabel rec = new JLabel("Dans la même catégorie: " + jeu.categorie);
         rec.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
@@ -721,7 +756,7 @@ public class Vue extends JFrame {
         }
         
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 6;
         gbc.anchor = GridBagConstraints.BASELINE;
 
         if(reco.size() >= 1) {
