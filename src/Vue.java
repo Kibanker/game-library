@@ -689,6 +689,18 @@ public class Vue extends JFrame {
         JTextArea commentArea = new JTextArea(5, 20);
         commentArea.setLineWrap(true);
         commentArea.setWrapStyleWord(true);
+        
+        ArrayList<ArrayList<String>> details = descriptionPanel.getGameDetails(descriptionPanel.FilePathXml, jeu.nom);
+        ArrayList<String> lesCommentaires = details.get(1) ; // On récupère la première liste puis on récupère son premier élément
+        
+
+        // Parcours de tous les commentaires dans lesCommentaires
+        for (String commentaire : lesCommentaires) {
+        	descriptionPanel.displayComments(commentaire);
+        }
+
+        
+        
         JScrollPane scrollPane = new JScrollPane(commentArea);
         gbc.gridy = 3;
         gbc.fill = GridBagConstraints.BOTH;
@@ -705,7 +717,8 @@ public class Vue extends JFrame {
         submitCommentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if (!commentArea.getText().isEmpty()) {
+            	if (!commentArea.getText().isEmpty()) {                    
+            		descriptionPanel.modifyGameComment(descriptionPanel.FilePathXml, descriptionPanel.getGameID(), commentArea.getText());
                     descriptionPanel.displayComments(commentArea.getText());
                     commentArea.setText("");
 				} else {
