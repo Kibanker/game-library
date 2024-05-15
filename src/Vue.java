@@ -159,6 +159,8 @@ public class Vue extends JFrame {
             }
         });
         
+
+        
         accueilPanel = new BackgroundPanel("files/appIcon.jpg");
         accueilPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -181,49 +183,23 @@ public class Vue extends JFrame {
         
 
         add(accueilPanel, BorderLayout.CENTER);
-
-        cataloguePanel = new JPanel();
-        cataloguePanel.setBackground(Color.BLACK);
-
-        categoriePanel = new JPanel();
-        categoriePanel.setBackground(Color.BLACK);
         
+        
+        cataloguePanel = new BackgroundPanel("files/background.jpg");
+        cataloguePanel = new JPanel();
+        
+        
+        categoriePanel = new BackgroundPanel("files/background.jpg");
+        categoriePanel = new JPanel();
+        
+        
+        detailJeuPanel = new BackgroundPanel("files/background.jpg");
         detailJeuPanel = new JPanel();
-        detailJeuPanel.setBackground(Color.BLACK);
         detailJeuPanel.setLayout(new BorderLayout());
 
         initMenuBar();
 
-        int numColumns = 4;
-        int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
-
-        cataloguePanel = new JPanel(new GridLayout(numRows, numColumns, 20, 15)); 
-        cataloguePanel.setBackground(Color.BLACK); 
-
-        for (Jeu jeu : biblio) {
-            JPanel panel = new JPanel(new BorderLayout());
-            panel.setBorder(createGameBorder(jeu.nom)); 
-            panel.setBackground(Color.BLACK); 
-
-            JLabel imageLabel = new JLabel(jeu.image);
-            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-            imageLabel.setBackground(Color.BLACK); 
-            imageLabel.setOpaque(true);
-            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
-            panel.add(imageLabel, BorderLayout.CENTER);
-
-            imageLabel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    afficherFenetreDetailJeu(jeu);
-                }
-            });
-
-            cataloguePanel.add(panel);
-        }
-
+        
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -255,7 +231,46 @@ public class Vue extends JFrame {
     }
 
     private void afficherPageCatalogue() {
-        getContentPane().removeAll(); 
+        getContentPane().removeAll();
+        
+        
+
+        
+        int numColumns = 4;
+        int numRows = (int) Math.ceil((double) biblio.size() / numColumns);
+        
+        BackgroundPanel cataloguePanel = new BackgroundPanel("files/background.jpg");
+        cataloguePanel.setLayout(new GridLayout(numRows, numColumns, 20, 15));
+        
+
+        for (Jeu jeu : biblio) {
+        	//cataloguePanel = new BackgroundPanel("files/background.jpg");
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.setBorder(createGameBorder(jeu.nom)); 
+            panel.setBackground(Color.BLACK); 
+
+            JLabel imageLabel = new JLabel(jeu.image);
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            imageLabel.setBackground(Color.BLACK); 
+            imageLabel.setOpaque(true);
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);
+            panel.add(imageLabel, BorderLayout.CENTER);
+            
+
+            imageLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    afficherFenetreDetailJeu(jeu);
+                }
+            });
+
+            cataloguePanel.add(panel);
+            
+        }
+        
+        
         add(cataloguePanel, BorderLayout.CENTER); 
         JScrollPane catalogueScrollPane = new JScrollPane(cataloguePanel);
         catalogueScrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -388,10 +403,10 @@ public class Vue extends JFrame {
 
     private void afficherPageAccueilCategorie() {
         getContentPane().removeAll(); 
-
-        JPanel categoryPanel = new JPanel();
-        categoryPanel.setLayout(new GridLayout(0, 1)); // Utiliser une disposition en colonnes pour afficher les catégories
-        categoryPanel.setBackground(Color.BLACK); 
+        
+        
+        BackgroundPanel categoryPanel = new BackgroundPanel("files/background.jpg");
+        categoryPanel.setLayout(new GridLayout(0, 1)); // Utiliser une disposition en colonnes pour afficher les catégories 
         JLabel titleLabel = new JLabel("CATEGORIES");
         titleLabel.setForeground(lightBlue);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 45)); 
@@ -555,9 +570,8 @@ public class Vue extends JFrame {
     private void afficherRecherche(String search) {
     	getContentPane().removeAll();
     	
-    	
-    	JPanel recherchePanel = new JPanel(new BorderLayout());
-    	recherchePanel.setBackground(Color.BLACK);
+    	BackgroundPanel recherchePanel = new BackgroundPanel("files/background.jpg");
+    	recherchePanel.setLayout(new BorderLayout());
     	
     	ArrayList<Jeu> rechercheJeux = new ArrayList<>();
         for (Jeu jeu : biblio) {
@@ -572,8 +586,8 @@ public class Vue extends JFrame {
 		}
         
         
-        JPanel jeuxRecherchePanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
-        jeuxRecherchePanel.setBackground(Color.BLACK);
+        BackgroundPanel jeuxRecherchePanel = new BackgroundPanel("files/background.jpg");
+        jeuxRecherchePanel.setLayout(new GridLayout(0, 4, 20, 15));
 
         for (Jeu jeu : rechercheJeux) {
             JPanel panel = new JPanel(new BorderLayout());
@@ -619,13 +633,14 @@ public class Vue extends JFrame {
     private void afficherFenetreDetailJeu(Jeu jeu) {
         getContentPane().removeAll();
         detailJeuPanel.removeAll(); 
+        
+        detailJeuPanel = new BackgroundPanel("files/background.jpg");
 
         DescriptionJeuPanel descriptionPanel = new DescriptionJeuPanel(jeu);
         
         JButton retourButton = new JButton("◄ Retour au catalogue");
         retourButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourButton.setForeground(Color.WHITE);
-        retourButton.setBackground(Color.BLACK);
         retourButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         retourButton.addActionListener(e -> afficherPageCatalogue());
         retourButton.addMouseListener(new MouseAdapter() {
@@ -641,8 +656,8 @@ public class Vue extends JFrame {
         });
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
-        buttonPanel.setBackground(Color.BLACK);
         buttonPanel.add(retourButton, BorderLayout.WEST);
+        buttonPanel.setBackground(new Color(0, 0, 0, 0));
         
         // Utilisation d'un GridBagLayout pour disposer les composants
         detailJeuPanel.setLayout(new GridBagLayout());
@@ -748,7 +763,7 @@ public class Vue extends JFrame {
         rec.setForeground(Color.WHITE);
         rec.setFont(new Font("Arial", Font.BOLD, 25));
         JPanel recoPanel = new JPanel(new BorderLayout());
-        recoPanel.setBackground(Color.BLACK);
+        recoPanel.setBackground(new Color(0, 0, 0, 0));
         recoPanel.add(rec, BorderLayout.NORTH);
         if(reco.size() >= 1) {
         	detailJeuPanel.add(recoPanel, gbc);
@@ -779,8 +794,9 @@ public class Vue extends JFrame {
         getContentPane().removeAll();  // Nettoyer le contenu actuel
 
         // Créer un nouveau panneau pour afficher les jeux de la catégorie sélectionnée
-        JPanel categoryPanel = new JPanel(new BorderLayout()); // Utiliser BorderLayout
-        categoryPanel.setBackground(Color.BLACK);
+        BackgroundPanel categoryPanel = new BackgroundPanel("files/background.jpg");
+        categoryPanel.setLayout(new BorderLayout()); // Utiliser BorderLayout
+        //categoryPanel.setBackground(Color.BLACK);
 
         // Ajouter un titre pour indiquer la catégorie sélectionnée
         JLabel categoryTitle = new JLabel(category);
@@ -801,8 +817,9 @@ public class Vue extends JFrame {
 
 
         // Créer un panneau pour les jeux avec une grille pour les organiser
-        JPanel jeuxPanel = new JPanel(new GridLayout(0, 4, 20, 15)); // Utiliser une grille
-        jeuxPanel.setBackground(Color.BLACK);
+        BackgroundPanel jeuxPanel = new BackgroundPanel("files/background.jpg"); // Utiliser une grille
+        jeuxPanel.setLayout(new GridLayout(0, 4, 20, 15));
+        jeuxPanel.setBackground(Color.WHITE);
 
         for (Jeu jeu : jeuxDeCategorie) {
             JPanel panel = new JPanel(new BorderLayout());
