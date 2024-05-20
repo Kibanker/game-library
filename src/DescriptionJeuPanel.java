@@ -29,28 +29,32 @@ public class DescriptionJeuPanel extends JPanel {
     String FilePathXml = "files/games.xml";
 
     public DescriptionJeuPanel(Jeu jeu) {
+    	
         this.jeu = jeu;
         this.voted = false; // Initialiser voted à false pour chaque jeu
         this.comments = new ArrayList<>(); // Initialiser la liste des commentaires
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         setBorder(createGameBorder(jeu.nom));
+       
 
         // Nom du jeu
         JPanel nomPanel = new JPanel(new BorderLayout());
+        nomPanel.setOpaque(false);
         nomPanel.setBackground(Color.BLACK);
         JLabel nameLabel = new JLabel(jeu.nom);
-        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setForeground(Color.BLACK);
         nameLabel.setFont(new Font("Arial", Font.BOLD, 24));
         nameLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
         nomPanel.add(nameLabel);
         add(nomPanel, BorderLayout.NORTH);
+        setOpaque(false);
 
         // Image du jeu en haut à gauche
         JLabel imageLabel = new JLabel(jeu.image);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        imageLabel.setBackground(Color.BLACK);
-        imageLabel.setOpaque(true);
+        //imageLabel.setBackground(Color.BLACK);
+        imageLabel.setOpaque(false);
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(imageLabel, BorderLayout.WEST);
 
@@ -60,26 +64,23 @@ public class DescriptionJeuPanel extends JPanel {
 
         // Résumé du jeu dans un JScrollPane
         JTextArea summaryArea = new JTextArea(jeu.resume);
-        summaryArea.setForeground(Color.WHITE);
-        summaryArea.setBackground(Color.BLACK);
+        summaryArea.setForeground(Color.BLACK);
         summaryArea.setFont(new Font("Arial", Font.PLAIN, 18));
         summaryArea.setEditable(false);
         summaryArea.setLineWrap(true); // Saut de ligne automatique
         summaryArea.setWrapStyleWord(true); // Saut de ligne après le mot entier
+        summaryArea.setOpaque(false);
 
-        JScrollPane summaryScrollPane = new JScrollPane(summaryArea);
-        summaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        summaryScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        summaryScrollPane.setPreferredSize(new Dimension(350, 50));
+        
 
         JPanel summaryPanel = new JPanel(new BorderLayout());
-        summaryPanel.add(summaryScrollPane, BorderLayout.CENTER);
+        summaryPanel.setOpaque(false);
+        summaryPanel.add(summaryArea, BorderLayout.CENTER);
         resumePanel.add(summaryPanel, BorderLayout.CENTER);
 
         // Description du jeu à droite de l'image
         JPanel descriptionPanel = new JPanel(new BorderLayout());
-        descriptionPanel.setBackground(Color.BLACK);
-        
+        descriptionPanel.setOpaque(false);
         ArrayList<ArrayList<String>> details = getGameDetails(FilePathXml, jeu.nom);
         String note = details.get(0).get(0) ; // On récupère la première liste puis on récupère son premier élément
 
@@ -104,8 +105,8 @@ public class DescriptionJeuPanel extends JPanel {
                     "Note donnée par l'utilisateur: "+ (note.equals("-1") ? "N/A" :note));
         }
 
-        descriptionArea.setForeground(Color.WHITE);
-        descriptionArea.setBackground(Color.BLACK);
+        descriptionArea.setForeground(Color.BLACK);
+        descriptionArea.setOpaque(false);
         descriptionArea.setFont(new Font("Arial", Font.PLAIN, 18));
         descriptionArea.setEditable(false);
         descriptionArea.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
@@ -113,11 +114,12 @@ public class DescriptionJeuPanel extends JPanel {
 
         // Ajouter des étoiles pour permettre à l'utilisateur de donner une note
         JPanel ratingPanel = new JPanel();
-        ratingPanel.setBackground(Color.BLACK);
+        ratingPanel.setOpaque(false);
         ratingPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         JLabel ratingLabel = new JLabel("Donner une note: ");
-        ratingLabel.setForeground(Color.WHITE);
+        ratingLabel.setForeground(Color.BLACK);
+        ratingLabel.setOpaque(false);
         ratingPanel.add(ratingLabel);
 
         // Créer des boutons d'étoile pour permettre à l'utilisateur de donner une note
@@ -167,6 +169,7 @@ public class DescriptionJeuPanel extends JPanel {
                 } else {
                     descriptionArea.setText(enleverDerniereLigne(descriptionArea));
                     descriptionArea.append("\n Note donnée par l'utilisateur: " + rating);
+                    modifyGameNote(FilePathXml, jeu.nom, rating);
                 }
             });
             ratingPanel.add(starButton);
@@ -177,7 +180,7 @@ public class DescriptionJeuPanel extends JPanel {
 
         // Ajout des images en dessous de la description
         JPanel imagesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        imagesPanel.setBackground(Color.BLACK);
+        imagesPanel.setOpaque(false);
 
         int maxWidth = 400;
         File folder = new File("files/" + jeu.nom);
@@ -190,6 +193,7 @@ public class DescriptionJeuPanel extends JPanel {
                     Image scaledImage = icon.getImage().getScaledInstance(maxWidth, -1, Image.SCALE_SMOOTH);
                     ImageIcon scaledIcon = new ImageIcon(scaledImage);
                     JLabel imageLabel1 = new JLabel(scaledIcon);
+                    imageLabel1.setOpaque(false);
                     imagesPanel.add(imageLabel1);
                 }
             }
@@ -197,23 +201,24 @@ public class DescriptionJeuPanel extends JPanel {
 
         // Ajout de la section de commentaires en dessous des jeux en recommandation
         commentsPanel = new JPanel(new BorderLayout());
-        commentsPanel.setBackground(Color.BLACK);
+        commentsPanel.setOpaque(false);
         
         // Panneau des recommandations
         JPanel commentairesBorder = new JPanel(new BorderLayout());
-        commentairesBorder.setBackground(Color.BLACK);
-        commentairesBorder.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Commentaires", 0, 0, new Font("Arial", Font.BOLD, 18), Color.WHITE));
+        commentairesBorder.setOpaque(false);
+        commentairesBorder.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.getColor(note, getBackground())), "Commentaires", 0, 0, new Font("Arial", Font.BOLD, 18), Color.BLACK));
         commentairesBorder.add(commentsPanel);
 
         // Panneau sud intermédiaire
         JPanel southPanel = new JPanel(new BorderLayout());
-        southPanel.setBackground(Color.BLACK);
+        southPanel.setOpaque(false);
         southPanel.add(imagesPanel, BorderLayout.NORTH);
         southPanel.add(commentairesBorder, BorderLayout.SOUTH);
 
         // Ajout du panneau sud au panneau principal
         add(southPanel, BorderLayout.SOUTH);
     }
+    
     public String getGameID() {
     	return jeu.nom ;
     }
@@ -367,7 +372,7 @@ public class DescriptionJeuPanel extends JPanel {
         
         for (String com : comments) {
             JLabel commentLabel = new JLabel(com);
-            commentLabel.setForeground(Color.WHITE);
+            commentLabel.setForeground(Color.BLACK);
             commentsPanel.add(commentLabel, FlowLayout.LEFT);
 		}
         

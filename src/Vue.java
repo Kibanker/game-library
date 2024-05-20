@@ -715,7 +715,7 @@ public class Vue extends JFrame {
         
          //Section des commentaires
         JLabel commentLabel = new JLabel("Qu'en avez-vous pensé ?");
-        commentLabel.setForeground(lightBlue);
+        commentLabel.setForeground(Color.BLACK);
         commentLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         commentLabel.setFont(new Font("Arial", Font.BOLD, 25));
         gbc.gridy = 2;
@@ -724,9 +724,11 @@ public class Vue extends JFrame {
         
         
         
-        JTextArea commentArea = new JTextArea(5, 20);
+        JTextArea commentArea = new JTextArea();
+        commentArea.setPreferredSize(new Dimension(0, 100));
         commentArea.setLineWrap(true);
         commentArea.setWrapStyleWord(true);
+        commentArea.setBackground(lightBlue);
         
         ArrayList<ArrayList<String>> details = descriptionPanel.getGameDetails(descriptionPanel.FilePathXml, jeu.nom);
         ArrayList<String> lesCommentaires = details.get(1) ; // On récupère la première liste puis on récupère son premier élément
@@ -739,10 +741,11 @@ public class Vue extends JFrame {
 
         
         
-        JScrollPane scrollPane = new JScrollPane(commentArea);
+        JPanel commentPane = new JPanel(new BorderLayout());
+        commentPane.add(commentArea, BorderLayout.CENTER);
         gbc.gridy = 3;
         gbc.fill = GridBagConstraints.BOTH;
-        detailJeuPanel.add(scrollPane, gbc); // Ajout de la zone de texte des commentaires
+        detailJeuPanel.add(commentPane, gbc); // Ajout de la zone de texte des commentaires
         
         JButton submitCommentButton = new JButton("Ajouter mon commentaire");
         submitCommentButton.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -768,7 +771,7 @@ public class Vue extends JFrame {
         });
 
         JPanel recommendations = new JPanel(new GridLayout(0, 3, 20, 15));
-        recommendations.setBackground(new Color(0,0,0,0));
+        recommendations.setOpaque(false);
         
         ArrayList<Jeu> reco = new ArrayList<Jeu>();
         
@@ -785,14 +788,13 @@ public class Vue extends JFrame {
         for (Jeu j : reco) {
     		JPanel panel = new JPanel(new BorderLayout());
     		panel.setBorder(createGameBorder(j.nom));
-            panel.setBackground(Color.BLACK);
+            panel.setOpaque(false);
             
 
             JLabel imageLabel = new JLabel(j.image);
             imageLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-            imageLabel.setBackground(Color.BLACK);
+            imageLabel.setOpaque(false);
             imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            imageLabel.setOpaque(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);
             panel.add(imageLabel, BorderLayout.CENTER);
@@ -813,7 +815,7 @@ public class Vue extends JFrame {
         gbc.anchor = GridBagConstraints.ABOVE_BASELINE;
         JLabel rec = new JLabel("Dans la même catégorie: " + jeu.categorie);
         rec.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
-        rec.setForeground(Color.WHITE);
+        rec.setForeground(Color.BLACK);
         rec.setFont(new Font("Arial", Font.BOLD, 25));
         JPanel recoPanel = new JPanel(new BorderLayout());
         recoPanel.setBackground(new Color(0, 0, 0, 0));
