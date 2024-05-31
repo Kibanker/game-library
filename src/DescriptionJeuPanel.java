@@ -36,7 +36,6 @@ public class DescriptionJeuPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         setBorder(createGameBorder(jeu.nom));
-       
 
         // Nom du jeu
         JPanel nomPanel = new JPanel(new BorderLayout());
@@ -81,8 +80,7 @@ public class DescriptionJeuPanel extends JPanel {
         // Description du jeu à droite de l'image
         JPanel descriptionPanel = new JPanel(new BorderLayout());
         descriptionPanel.setOpaque(false);
-        ArrayList<ArrayList<String>> details = getGameDetails(FilePathXml, jeu.nom);
-        String note = details.get(0).get(0) ; // On récupère la première liste puis on récupère son premier élément
+        String note = jeu.getGameNote(jeu.nom) ; // On récupère la première liste puis on récupère son premier élément
 
         JTextArea descriptionArea = new JTextArea();
         if (jeu.noteCrea == -1.0) {
@@ -159,7 +157,7 @@ public class DescriptionJeuPanel extends JPanel {
                 if (!voted) {
                 	descriptionArea.setText(enleverDerniereLigne(descriptionArea));
                     descriptionArea.append("\nNote donnée par l'utilisateur: " + rating);
-                    modifyGameNote(FilePathXml, jeu.nom, rating);
+                    jeu.modifyGameNote(jeu.nom, rating);
                     for (Component component : ratingPanel.getComponents()) {
                         if (component instanceof JButton) {
                             ((JButton) component).setEnabled(false);
@@ -169,7 +167,7 @@ public class DescriptionJeuPanel extends JPanel {
                 } else {
                     descriptionArea.setText(enleverDerniereLigne(descriptionArea));
                     descriptionArea.append("\n Note donnée par l'utilisateur: " + rating);
-                    modifyGameNote(FilePathXml, jeu.nom, rating);
+                    jeu.modifyGameNote(jeu.nom, rating);
                 }
             });
             ratingPanel.add(starButton);
@@ -219,10 +217,6 @@ public class DescriptionJeuPanel extends JPanel {
         add(southPanel, BorderLayout.SOUTH);
     }
     
-    public String getGameID() {
-    	return jeu.nom ;
-    }
-    
     public String enleverDerniereLigne(JTextArea descriptionArea) {
         int indexDernierN = descriptionArea.getText().lastIndexOf("\n");
         if (indexDernierN != -1) {
@@ -233,136 +227,12 @@ public class DescriptionJeuPanel extends JPanel {
         }
     }
     
-    public ArrayList<ArrayList<String>> getGameDetails(String filePathXml, String gameId) {
-        ArrayList<ArrayList<String>> details = new ArrayList<>();
-        try {
-            File file = new File(filePathXml);
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
-            doc.getDocumentElement().normalize();
-
-            NodeList nodeList = doc.getElementsByTagName("jeu");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    String id = element.getElementsByTagName("id").item(0).getTextContent();
-
-                    if (id.equals(gameId)) {
-                    	ArrayList<String> laNote = new ArrayList<>();
-                    	laNote.add(element.getElementsByTagName("note").item(0).getTextContent());
-                        details.add(laNote);
-                        
-                        NodeList commentNodes = element.getElementsByTagName("uncommentaire"); // On accède à la balise commentaire du jeu
-                        ArrayList<String> comments = new ArrayList<>();
-                        for (int j = 0; j < commentNodes.getLength(); j++) {
-                            Node commentNode = commentNodes.item(j);
-                            comments.add(commentNode.getTextContent());
-                        }
-                        for(String com: comments) {
-                        	System.out.println(com );
-                        	System.out.println("sep");
-                        	System.out.println(comments.size());
-                        	System.out.println("");
-                        }
-                        details.add(comments);
-                        
-                        break;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return details ;
-    }
-    public static void modifyGameNote(String filePath, String gameId, int newNote) {
-        try {
-            File file = new File(filePath);
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
-            doc.getDocumentElement().normalize();
-
-            NodeList nodeList = doc.getElementsByTagName("jeu");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Element element = (Element) nodeList.item(i);
-                String id = element.getElementsByTagName("id").item(0).getTextContent();
-                String note = element.getElementsByTagName("id").item(0).getTextContent();
-
-                if (id.equals(gameId) && !note.equals(String.valueOf(i))) {
-                    // Mettre à jour la note du jeu
-                    Element noteElement = (Element) element.getElementsByTagName("note").item(0);
-                    noteElement.setTextContent(Integer.toString(newNote));
-                    break;
-                }
-            }
-
-            // Écrire les changements dans le fichier XML
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new FileOutputStream(filePath));
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(source, result);
-
-            System.out.println("Note du jeu " + gameId + " modifiée avec succès.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void modifyGameComment(String filePath, String gameId, String newComment) {
-        try {
-            File file = new File(filePath);
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
-            doc.getDocumentElement().normalize();
-
-            NodeList nodeList = doc.getElementsByTagName("jeu");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Element element = (Element) nodeList.item(i);
-                String id = element.getElementsByTagName("id").item(0).getTextContent();
-                String commentaire = element.getElementsByTagName("commentaires").item(0).getTextContent();
-
-                if (id.equals(gameId) && !commentaire.equals(newComment)) {
-                    // Mettre à jour la note du jeu
-                    Element noteElement = (Element) element.getElementsByTagName("commentaires").item(element.getElementsByTagName("commentaire").getLength());
-                    // Création d'un nouveau noeud uncommentaire
-                    Element newCommentNode = element.getElementsByTagName("commentaires").item(0).getOwnerDocument().createElement("uncommentaire");
-                    // Ajout du nouveau commentaire au noeud uncommentaire
-                    newCommentNode.setTextContent(newComment);
-                    // Ajout du uncommentaire au noeud commentaire
-                    noteElement.appendChild(newCommentNode);
-                    break;
-                }
-            }
-
-            // Écrire les changements dans le fichier XML
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new FileOutputStream(filePath));
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(source, result);
-
-            System.out.println("Commentaire ajouter au jeu " + gameId + " modifiée avec succès.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+	
     private Border createGameBorder(String name) {
         Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
         return BorderFactory.createCompoundBorder(new DropShadowBorder(), emptyBorder);
     }
-
+    
     void displayComments(String comment) {
         commentsPanel.removeAll();
         commentsPanel.setLayout(new BoxLayout(commentsPanel, BoxLayout.Y_AXIS));

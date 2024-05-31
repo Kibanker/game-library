@@ -23,7 +23,8 @@ public class Vue extends JFrame {
     String[] categories = {"Action", "Aventure", "Course", "Réflexion", "Simulation", "Stratégie", "Sport", "Combat"};
     
 
-    class RoundedPanel extends JPanel {
+    @SuppressWarnings("serial")
+	class RoundedPanel extends JPanel {
         private Color backgroundColor;
         private int cornerRadius = 15;
 
@@ -54,13 +55,26 @@ public class Vue extends JFrame {
             graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);
         }
     }
+    
+    @SuppressWarnings("serial")
+	public class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
 
+        public BackgroundPanel(String fileName) {
+            backgroundImage = new ImageIcon(fileName).getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
 
     public Vue(ArrayList<Jeu> biblio) {
         super("Virtual Arcade");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(Color.BLACK); 
         
         pixelFont = loadFont("files/Crang.ttf");
         pixelFont = pixelFont.deriveFont(Font.BOLD, 80);
@@ -78,7 +92,7 @@ public class Vue extends JFrame {
         JLabel catalogueLabel = new JLabel("CATALOGUE");
         JLabel categorieLabel = new JLabel("CATEGORIES");
         JLabel quitterLabel = new JLabel("Quitter");
-        
+       
         //Bordure ronde
 
         RoundedPanel catalogueLabelPanel = new RoundedPanel(new BorderLayout(), 15, new Color(0 ,0 , 0, 75));
@@ -730,8 +744,7 @@ public class Vue extends JFrame {
         commentArea.setWrapStyleWord(true);
         commentArea.setBackground(lightBlue);
         
-        ArrayList<ArrayList<String>> details = descriptionPanel.getGameDetails(descriptionPanel.FilePathXml, jeu.nom);
-        ArrayList<String> lesCommentaires = details.get(1) ; // On récupère la première liste puis on récupère son premier élément
+        ArrayList<String> lesCommentaires = jeu.getGameComment(jeu.nom) ; // On récupère la première liste puis on récupère son premier élément
         
 
         // Parcours de tous les commentaires dans lesCommentaires
@@ -759,7 +772,7 @@ public class Vue extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
             	if (!commentArea.getText().isEmpty()) {                    
-            		descriptionPanel.modifyGameComment(descriptionPanel.FilePathXml, descriptionPanel.getGameID(), commentArea.getText());
+            		jeu.modifyGameComment(jeu.nom, commentArea.getText());
                     descriptionPanel.displayComments(commentArea.getText());
                     commentArea.setText("");
 				} else {

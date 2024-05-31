@@ -6,7 +6,7 @@ public class DropShadowBorder implements Border {
     private final int shadowSize;
     private final Color shadowColor;
     private final Color textColor;
-
+    
     public DropShadowBorder() {
         this(5, 5, new Color(180, 220, 250), Color.WHITE);
     }
@@ -57,8 +57,9 @@ public class DropShadowBorder implements Border {
         return new Insets(shadowSize, shadowSize, shadowSize, shadowSize);
     }
 
-    @Override
-    public boolean isBorderOpaque() {
-        return false;
-    }
+	@Override
+	public boolean isBorderOpaque() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

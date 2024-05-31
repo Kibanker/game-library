@@ -13,6 +13,7 @@ import javax.swing.*;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 public class Bibliotheque { // Contrôleur
+	
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
 		
@@ -22,19 +23,12 @@ public class Bibliotheque { // Contrôleur
 		} catch( Exception ex ) {
 		    System.err.println( "Failed to initialize LaF" );
 		}
-
-		
-		f.setLayout(new FlowLayout());
-
-//		
-//		f.setSize(512*3, 512*3);
-//		f.setVisible(true);
 		
 		ArrayList<Jeu> biblio = readGamesFromCSV("files/games.csv");
         SwingUtilities.invokeLater(() -> new Vue(biblio));
 		
 	}
-	
+
 	public static ArrayList<Jeu> readGamesFromCSV(String fileName) {
         ArrayList<Jeu> jeux = new ArrayList<>();
         String line;
